@@ -6,7 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 const materials = [
   MatToolbarModule,
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
 ];
 
 @NgModule({
