@@ -7,18 +7,22 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppMaterialModule} from './modules/app-material.module';
 import {ShellComponent} from './components/shell.component';
 import {NavComponent} from './components/nav/nav.component';
+import {AuthenticateComponent} from './components/authenticate/authenticate.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShellComponent,
-    NavComponent
+    NavComponent,
+    AuthenticateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

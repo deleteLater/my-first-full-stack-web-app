@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 
     <a mat-button routerLink="/home">Home</a>
     <a mat-button routerLink="/about">About</a>
-    <a mat-raised-button color="warn" routerLink="/sign-in">Sign In</a>
+    <a mat-raised-button color="warn" routerLink="/authenticate">Sign In</a>
   </mat-toolbar>
   `,
   styles: ['.spacer {flex: 1 1 auto; } mat-icon {margin-right: 10px}']
