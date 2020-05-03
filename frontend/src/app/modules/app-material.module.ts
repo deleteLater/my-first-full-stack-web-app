@@ -7,6 +7,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatTreeModule} from '@angular/material/tree';
 
 const materials = [
   MatToolbarModule,
@@ -16,7 +18,9 @@ const materials = [
   MatInputModule,
   MatFormFieldModule,
   MatCheckboxModule,
-  MatTabsModule
+  MatTabsModule,
+  MatSidenavModule,
+  MatTreeModule
 ];
 
 @NgModule({

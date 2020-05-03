@@ -8,21 +8,26 @@ import {AppMaterialModule} from './modules/app-material.module';
 import {ShellComponent} from './components/shell.component';
 import {NavComponent} from './components/nav/nav.component';
 import {AuthenticateComponent} from './components/authenticate/authenticate.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {WelcomeComponent} from './components/welcome/welcome.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShellComponent,
     NavComponent,
-    AuthenticateComponent
+    AuthenticateComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
