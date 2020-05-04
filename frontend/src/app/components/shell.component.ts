@@ -1,69 +1,56 @@
 import {Component, OnInit} from '@angular/core';
-import {MatTreeNestedDataSource} from '@angular/material/tree';
-import {NestedTreeControl} from '@angular/cdk/tree';
-import {Router} from '@angular/router';
-
-export interface ComponentTreeNode {
-  path: string;
-  label: string;
-  children: ComponentTreeNode[];
-}
-
-const TREE_DATA: ComponentTreeNode[] = [
-  {
-    path: '/welcome',
-    label: 'first',
-    children: []
-  },
-  {
-    path: '/second',
-    label: 'second',
-    children: [
-      {
-        path: '/second/sub-one',
-        label: 'second-sub-one',
-        children: []
-      }
-    ]
-  },
-];
 
 @Component({
   selector: 'app-shell',
   template: `
-    <div class="container" fxLayout="column">
-      <app-nav (toggleNavEvent)="openSideNav = !openSideNav;"></app-nav>
+    <div style="height: 100%" fxLayout="column">
+      <app-nav (toggleSideNavEvent)="onToggleSideNav($event)"></app-nav>
       <mat-sidenav-container fxFlex="grow">
-        <mat-sidenav #sidenav mode="side" [(opened)]="openSideNav">
-
-          <mat-tree [dataSource]="treeDataSource" [treeControl]="treeControl" class="component-tree">
-            <!-- This is the tree node template for leaf nodes -->
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle (click)="navigateTo(node.path)">
-              <li class="mat-tree-node">
-                <!-- use a disabled button to provide padding for tree leaf -->
-                <button mat-icon-button disabled></button>
-                {{node.label}}
-              </li>
-            </mat-tree-node>
-            <!-- This is the tree node template for expandable nodes -->
-            <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-              <li>
-                <div class="mat-tree-node">
-                  <button mat-icon-button matTreeNodeToggle
-                          [attr.aria-label]="'toggle ' + node.name">
-                    <mat-icon class="mat-icon-rtl-mirror">
-                      {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                    </mat-icon>
-                  </button>
-                  {{node.label}}
-                </div>
-                <ul [class.component-tree-invisible]="!treeControl.isExpanded(node)">
-                  <ng-container matTreeNodeOutlet></ng-container>
-                </ul>
-              </li>
-            </mat-nested-tree-node>
-          </mat-tree>
-
+        <mat-sidenav mode="side" [class.mat-elevation-z4]="true" style="width: 240px" [opened]="openSideNav">
+          <mat-nav-list dense>
+            <mat-list-item routerLink="/welcome">
+              <mat-icon>dashboard</mat-icon>
+              Dashboard
+            </mat-list-item>
+            <mat-list-item routerLink="">
+              <mat-icon>check_box</mat-icon>
+              General
+            </mat-list-item>
+            <mat-list-item routerLink="">
+              <mat-icon>person</mat-icon>
+              Profile
+            </mat-list-item>
+            <mat-list-item routerLink="">
+              <mat-icon>notification_important</mat-icon>
+              Notification
+            </mat-list-item>
+            <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+              <mat-expansion-panel-header>
+                Preference
+              </mat-expansion-panel-header>
+              <mat-nav-list dense>
+                <a mat-list-item routerLink="">
+                  <mat-icon>attach_money</mat-icon>
+                  Billing</a>
+                <a mat-list-item routerLink="">
+                  <mat-icon>notification_important</mat-icon>
+                  Notification</a>
+              </mat-nav-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+              <mat-expansion-panel-header>
+                Privacy
+              </mat-expansion-panel-header>
+              <mat-nav-list dense>
+                <a mat-list-item routerLink="">
+                  <mat-icon>person_add</mat-icon>
+                  Partnership Request</a>
+                <a mat-list-item routerLink="">
+                  <mat-icon>visibility</mat-icon>
+                  Profile Visibility</a>
+              </mat-nav-list>
+            </mat-expansion-panel>
+          </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
           <router-outlet></router-outlet>
@@ -72,47 +59,27 @@ const TREE_DATA: ComponentTreeNode[] = [
     </div>
   `,
   styles: [`
-    .container {
-      height: 100%;
+    mat-icon {
+      font-size: 28px;
+      margin-right: 10px;
     }
 
-    mat-sidenav {
-      width: 200px;
+    .mat-expansion-panel-header {
+      padding: 0 20px;
     }
-
-    .component-tree-invisible {
-      display: none;
-    }
-
-    .component-tree ul,
-    .component-tree li {
-      margin-top: 0;
-      margin-bottom: 0;
-      list-style-type: none;
-    }`]
+  `]
 })
 export class ShellComponent implements OnInit {
 
   openSideNav = true;
 
-  treeControl = new NestedTreeControl<ComponentTreeNode>(node => node.children);
-  treeDataSource = new MatTreeNestedDataSource<ComponentTreeNode>();
-
-  hasChild(_: number, node: ComponentTreeNode): boolean {
-    return !!node.children && node.children.length > 0;
-  }
-
-  constructor(
-    private router: Router
-  ) {
-    this.treeDataSource.data = TREE_DATA;
+  constructor() {
   }
 
   ngOnInit(): void {
   }
 
-  navigateTo(path: string) {
-    this.router.navigate([path])
-      .then(result => console.log(`navigate to ${path}: ${result}`));
+  onToggleSideNav(open: boolean) {
+    this.openSideNav = open;
   }
 }

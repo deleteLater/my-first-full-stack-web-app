@@ -9,6 +9,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTreeModule} from '@angular/material/tree';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
+import {MatRippleModule} from '@angular/material/core';
 
 const materials = [
   MatToolbarModule,
@@ -20,7 +23,10 @@ const materials = [
   MatCheckboxModule,
   MatTabsModule,
   MatSidenavModule,
-  MatTreeModule
+  MatTreeModule,
+  MatExpansionModule,
+  MatListModule,
+  MatRippleModule
 ];
 
 @NgModule({
