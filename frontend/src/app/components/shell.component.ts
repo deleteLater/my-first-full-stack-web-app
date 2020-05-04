@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
     <div style="height: 100%" fxLayout="column">
       <app-nav (toggleSideNavEvent)="onToggleSideNav($event)"></app-nav>
       <mat-sidenav-container fxFlex="grow">
-        <mat-sidenav mode="side" [class.mat-elevation-z4]="true" style="width: 240px" [opened]="openSideNav">
+        <mat-sidenav mode="side" class="mat-elevation-z4" style="width: 240px" [opened]="openSideNav">
           <mat-nav-list dense>
             <mat-list-item routerLink="/welcome">
               <mat-icon>dashboard</mat-icon>
@@ -62,6 +62,10 @@ import {Component, OnInit} from '@angular/core';
     mat-icon {
       font-size: 28px;
       margin-right: 10px;
+    }
+
+    .mat-nav-list .mat-list-item {
+      margin-bottom: 8px;
     }
 
     .mat-expansion-panel-header {

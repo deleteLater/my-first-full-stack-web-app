@@ -3,12 +3,11 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 @Component({
   selector: 'app-nav',
   template: `
-    <mat-toolbar color="primary" class="mat-elevation-z8">
+    <mat-toolbar class="mat-elevation-z4">
       <div class="icon-container" matRipple (click)="toggleSideNav()">
         <mat-icon>{{openSideNav ? 'menu_open' : 'menu'}}</mat-icon>
       </div>
-
-      <a routerLink="" style="text-decoration: none; color: white"><h1>Welcome</h1></a>
+      <a routerLink="" style="text-decoration: none; color: #222b45; font-size: 36px"><h1>Welcome</h1></a>
 
       <div class="spacer"></div>
 
@@ -18,6 +17,14 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
     </mat-toolbar>
   `,
   styles: [`
+
+    mat-toolbar {
+      background-color: #fff;
+      color: #222b45;
+      position: relative;
+      z-index: 9999;
+    }
+
     .spacer {
       flex: 1 1 auto;
     }
@@ -27,8 +34,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       height: 100%;
       display: table;
     }
+
     .icon-container:hover {
-      background-color: #303F9F;
+      background-color: #F5F5F5;
     }
 
     mat-icon {
@@ -37,7 +45,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
     }
 
     .mat-button:hover {
-      background-color: #303F9F;
+      background-color: #F5F5F5;
     }
 
     .mat-toolbar-single-row {
