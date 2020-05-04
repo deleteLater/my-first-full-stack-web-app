@@ -11,6 +11,7 @@ import {AuthenticateComponent} from './components/authenticate/authenticate.comp
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {PageNotFoundComponent} from './components/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ShellComponent,
     NavComponent,
     AuthenticateComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
