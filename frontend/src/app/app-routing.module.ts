@@ -9,6 +9,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 const routes: Routes = [
   {
     path: '', component: ShellComponent, children: [
+      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent}
     ]
   },
