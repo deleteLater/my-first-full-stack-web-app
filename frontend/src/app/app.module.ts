@@ -13,6 +13,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {PageNotFoundComponent} from './components/error/page-not-found.component';
 import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
     AppMaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
