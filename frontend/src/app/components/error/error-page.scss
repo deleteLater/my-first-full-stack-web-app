@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  position: relative;
+  display: inline-block;
+}
+
+h1, a, p {
+  position: absolute;
+  z-index: 999;
+}
+
+h1 {
+  font-size: 48px;
+  font-family: 'Jost', serif;
+}
+
+#a-500 {
+  right: 5%;
+  bottom: 1%;
+  width: 25%;
+}
+
+#h1-500 {
+  top: 3%;
+  width: 60%;
+}
+
+#p-500 {
+  color: #616161;
+  top: 13%;
+}

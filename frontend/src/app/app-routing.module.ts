@@ -4,6 +4,7 @@ import {ShellComponent} from './components/shell.component';
 import {AuthenticateComponent} from './components/authenticate/authenticate.component';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {PageNotFoundComponent} from './components/page-not-found.component';
+import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
     ]
   },
   {path: 'authenticate', component: AuthenticateComponent},
+  {path: 'error', component: InternalServerErrorComponent},
   {path: '**', pathMatch: 'full', component: PageNotFoundComponent}
 ];
 

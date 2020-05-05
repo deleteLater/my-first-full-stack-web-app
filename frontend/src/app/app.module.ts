@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {PageNotFoundComponent} from './components/page-not-found.component';
+import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {PageNotFoundComponent} from './components/page-not-found.component';
     NavComponent,
     AuthenticateComponent,
     WelcomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    InternalServerErrorComponent
   ],
   imports: [
     BrowserModule,
