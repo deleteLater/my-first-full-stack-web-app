@@ -24,7 +24,7 @@ import {Component, OnInit} from '@angular/core';
               <mat-icon>notification_important</mat-icon>
               Notification
             </mat-list-item>
-            <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+            <mat-expansion-panel class="mat-elevation-z0" dense>
               <mat-expansion-panel-header>
                 Preference
               </mat-expansion-panel-header>
@@ -37,7 +37,7 @@ import {Component, OnInit} from '@angular/core';
                   Notification</a>
               </mat-nav-list>
             </mat-expansion-panel>
-            <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+            <mat-expansion-panel class="mat-elevation-z0" dense>
               <mat-expansion-panel-header>
                 Privacy
               </mat-expansion-panel-header>

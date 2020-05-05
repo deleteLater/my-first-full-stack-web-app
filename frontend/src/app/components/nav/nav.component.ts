@@ -13,7 +13,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
       <a mat-button routerLink="/home">Home</a>
       <a mat-button routerLink="/about">About</a>
-      <a mat-raised-button color="warn" routerLink="/authenticate">Sign In</a>
+      <a mat-raised-button class="login-btn" routerLink="/authenticate">
+        <div class="icon-btn">
+          <mat-icon>account_circle</mat-icon>
+          <span>SIGN IN</span>
+        </div>
+      </a>
     </mat-toolbar>
   `,
   styles: [`
@@ -23,6 +28,21 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       color: #222b45;
       position: relative;
       z-index: 9999;
+    }
+
+    .login-btn {
+      background-color: #1389FD;
+      color: #fff;
+      padding: 0 10px;
+    }
+
+    .icon-btn {
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-btn span {
+      margin-left: 7px;
     }
 
     .spacer {
