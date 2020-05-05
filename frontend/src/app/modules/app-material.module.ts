@@ -12,6 +12,9 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import {MatRippleModule} from '@angular/material/core';
+import {LayoutModule} from '@angular/cdk/layout';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 const materials = [
   MatToolbarModule,
@@ -26,7 +29,10 @@ const materials = [
   MatTreeModule,
   MatExpansionModule,
   MatListModule,
-  MatRippleModule
+  MatRippleModule,
+  LayoutModule,
+  MatMenuModule,
+  MatGridListModule
 ];
 
 @NgModule({

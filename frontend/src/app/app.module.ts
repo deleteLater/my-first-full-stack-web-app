@@ -13,6 +13,7 @@ import {WelcomeComponent} from './components/welcome/welcome.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {PageNotFoundComponent} from './components/error/page-not-found.component';
 import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {InternalServerErrorComponent} from './components/error/internal-server-e
     AuthenticateComponent,
     WelcomeComponent,
     PageNotFoundComponent,
-    InternalServerErrorComponent
+    InternalServerErrorComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

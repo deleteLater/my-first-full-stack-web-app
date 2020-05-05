@@ -5,11 +5,13 @@ import {AuthenticateComponent} from './components/authenticate/authenticate.comp
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {PageNotFoundComponent} from './components/error/page-not-found.component';
 import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '', component: ShellComponent, children: [
-      {path: 'welcome', component: WelcomeComponent}
+      {path: 'welcome', component: WelcomeComponent},
+      {path: 'dashboard', component: DashboardComponent}
     ]
   },
   {path: 'authenticate', component: AuthenticateComponent},
