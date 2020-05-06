@@ -36,6 +36,11 @@ const materials = [
   MatGridListModule
 ];
 
+const customIcons = [
+  'github',
+  'signin'
+];
+
 @NgModule({
   imports: [materials],
   exports: [materials],
@@ -49,9 +54,11 @@ export class AppMaterialModule {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
   ) {
-    this.matIconRegistry.addSvgIcon(
-      'github',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icon/github.svg')
-    );
+    customIcons.forEach(iconName => {
+      this.matIconRegistry.addSvgIcon(
+        iconName,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(`../assets/icon/${iconName}.svg`)
+      );
+    });
   }
 }

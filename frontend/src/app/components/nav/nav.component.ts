@@ -21,7 +21,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       </a>
       <a mat-raised-button class="login-btn" routerLink="/authenticate">
         <div class="icon-btn">
-          <mat-icon>account_circle</mat-icon>
+          <mat-icon svgIcon="signin"></mat-icon>
           <span>SIGN IN</span>
         </div>
       </a>
