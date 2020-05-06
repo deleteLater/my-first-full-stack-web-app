@@ -54,9 +54,9 @@ import {Component, OnInit} from '@angular/core';
           </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-            <mat-card>
-              <router-outlet></router-outlet>
-            </mat-card>
+          <div class="main-content">
+            <router-outlet></router-outlet>
+          </div>
         </mat-sidenav-content>
       </mat-sidenav-container>
     </div>
@@ -76,6 +76,10 @@ import {Component, OnInit} from '@angular/core';
     }
 
     mat-card {
+      margin: 10px;
+    }
+
+    .main-content {
       margin: 10px;
     }
   `]
