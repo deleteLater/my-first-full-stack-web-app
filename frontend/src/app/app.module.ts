@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AppMaterialModule} from './modules/app-material.module';
+import {AppMaterialModule} from './modules/material/app-material.module';
 import {ShellComponent} from './components/shell.component';
 import {NavComponent} from './components/nav/nav.component';
 import {AuthenticateComponent} from './components/authenticate/authenticate.component';
