@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 
 import {GeneralRoutingModule} from './general-routing.module';
 import {GeneralComponent} from './general.component';
-import {GeneralMaterialModule} from '../material/general-material.module';
+import {AppMaterialModule} from '../material/app-material.module';
 import {UserComponent} from './user/user.component';
 import {RoleComponent} from './role/role.component';
 import {PermissionComponent} from './permission/permission.component';
@@ -13,7 +13,7 @@ import {PermissionComponent} from './permission/permission.component';
   imports: [
     CommonModule,
     GeneralRoutingModule,
-    GeneralMaterialModule
+    AppMaterialModule
   ]
 })
 export class GeneralModule {
