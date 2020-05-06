@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
+// noinspection CssUnusedSymbol
 @Component({
   selector: 'app-shell',
   template: `
@@ -53,9 +54,9 @@ import {Component, OnInit} from '@angular/core';
           </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-          <div class="main-container">
-            <router-outlet></router-outlet>
-          </div>
+            <mat-card>
+              <router-outlet></router-outlet>
+            </mat-card>
         </mat-sidenav-content>
       </mat-sidenav-container>
     </div>
@@ -74,8 +75,8 @@ import {Component, OnInit} from '@angular/core';
       padding: 0 20px;
     }
 
-    .main-container {
-      margin: 20px;
+    mat-card {
+      margin: 10px;
     }
   `]
 })
