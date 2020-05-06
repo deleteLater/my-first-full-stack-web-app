@@ -12,7 +12,7 @@ import {Component, OnInit} from '@angular/core';
               <mat-icon>dashboard</mat-icon>
               Dashboard
             </mat-list-item>
-            <mat-list-item routerLink="">
+            <mat-list-item routerLink="/general">
               <mat-icon>check_box</mat-icon>
               General
             </mat-list-item>

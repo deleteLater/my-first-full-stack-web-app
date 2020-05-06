@@ -10,7 +10,8 @@ const routes: Routes = [
   {
     path: '', component: ShellComponent, children: [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardComponent}
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'general', loadChildren: () => import('./modules/general/general.module').then(m => m.GeneralModule)},
     ]
   },
   {path: 'authenticate', component: AuthenticateComponent},
