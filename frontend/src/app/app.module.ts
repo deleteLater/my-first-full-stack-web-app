@@ -14,6 +14,7 @@ import {PageNotFoundComponent} from './components/error/page-not-found.component
 import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ChartsModule} from 'ng2-charts';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {ChartsModule} from 'ng2-charts';
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

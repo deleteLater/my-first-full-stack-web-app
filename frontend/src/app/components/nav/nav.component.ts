@@ -13,6 +13,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
       <a mat-button routerLink="/home">Home</a>
       <a mat-button routerLink="/about">About</a>
+      <a mat-button href="https://github.com/deleteLater/my-first-full-stack-web-app" target="_blank">
+        <div class="icon-btn">
+          <mat-icon svgIcon="github"></mat-icon>
+          <span>GITHUB</span>
+        </div>
+      </a>
       <a mat-raised-button class="login-btn" routerLink="/authenticate">
         <div class="icon-btn">
           <mat-icon>account_circle</mat-icon>
@@ -42,7 +48,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
     }
 
     .icon-btn span {
-      margin-left: 7px;
+      margin-left: 6px;
     }
 
     .spacer {
