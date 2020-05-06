@@ -53,7 +53,9 @@ import {Component, OnInit} from '@angular/core';
           </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-          <router-outlet></router-outlet>
+          <div class="main-container">
+            <router-outlet></router-outlet>
+          </div>
         </mat-sidenav-content>
       </mat-sidenav-container>
     </div>
@@ -70,6 +72,10 @@ import {Component, OnInit} from '@angular/core';
 
     .mat-expansion-panel-header {
       padding: 0 20px;
+    }
+
+    .main-container {
+      margin: 20px;
     }
   `]
 })
