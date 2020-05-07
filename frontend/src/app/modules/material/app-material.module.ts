@@ -14,6 +14,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatRippleModule} from '@angular/material/core';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -32,6 +33,7 @@ const materials = [
   MatListModule,
   MatRippleModule,
   LayoutModule,
+  MatProgressBarModule,
   MatMenuModule,
   MatGridListModule
 ];

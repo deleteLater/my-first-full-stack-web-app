@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
+// noinspection CssUnusedSymbol
 @Component({
   selector: 'app-nav',
   template: `
@@ -11,8 +12,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
       <div class="spacer"></div>
 
-      <a mat-button routerLink="/home">Home</a>
-      <a mat-button routerLink="/about">About</a>
+      <a mat-button routerLink="/page-not-found">NOT FOUND</a>
+      <a mat-button routerLink="/error">ERROR</a>
+      <a mat-button (click)="toggleLoadingBar()">SLOW LOAD</a>
       <a mat-button href="https://github.com/deleteLater/my-first-full-stack-web-app" target="_blank">
         <div class="icon-btn">
           <mat-icon svgIcon="github"></mat-icon>
@@ -82,6 +84,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class NavComponent implements OnInit {
 
   openSideNav = true;
+  @Output() showLoadingBarEvent = new EventEmitter();
   @Output() toggleSideNavEvent = new EventEmitter<boolean>();
 
   constructor() {
@@ -93,5 +96,9 @@ export class NavComponent implements OnInit {
   toggleSideNav() {
     this.openSideNav = !this.openSideNav;
     this.toggleSideNavEvent.emit(this.openSideNav);
+  }
+
+  toggleLoadingBar() {
+    this.showLoadingBarEvent.emit();
   }
 }
