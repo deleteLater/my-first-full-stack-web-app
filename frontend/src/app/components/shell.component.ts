@@ -56,7 +56,7 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
           </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-          <div class="main-content">
+          <div [ngClass]="openSideNav ? 'sub-main' : ''">
             <router-outlet></router-outlet>
           </div>
         </mat-sidenav-content>
@@ -78,6 +78,10 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
     }
 
     mat-card {
+      margin: 10px;
+    }
+
+    .sub-main {
       margin: 10px;
     }
   `]
