@@ -1,0 +1,67 @@
+table {
+  width: 100%;
+}
+
+.mat-row:hover :not(.selected-row) {
+  background-color: rgba(0,0,0,.04);
+}
+
+th, td {
+  padding: 0 16px;
+}
+
+th.mat-header-cell {
+  font-size: .875rem;
+  line-height: 1.375rem;
+  font-weight: 500;
+  letter-spacing: .0071428571em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  box-sizing: border-box;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 56px;
+  padding: 0 16px;
+  color: rgba(0,0,0,.87);
+}
+
+td.mat-cell {
+  font-size: .875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: .0178571429em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 52px;
+  color: rgba(0,0,0,.87);
+  padding: 16px;
+}
+
+th.mat-header-cell:first-of-type {
+  width: 56px;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type {
+  padding-right: 0;
+}
+
+.mat-cell {
+  padding: 8px 8px 8px 0;
+}
+
+.selected-row {
+  background-color: #E8EAF6;
+}
+
+.table-cell-mat-icon {
+  display: contents;
+}
+
+.mat-input-element {
+  font-size: 12px;
+}

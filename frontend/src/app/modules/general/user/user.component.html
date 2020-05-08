@@ -1,1 +1,110 @@
-<p>user works!</p>
+<mat-card>
+  <div fxLayout="row" fxLayoutAlign="space-between" style="margin: 10px">
+    <mat-card-title fxFlexAlign="center">Users</mat-card-title>
+    <div fxFlexAlign="center">
+      <mat-form-field floatLabel="always">
+        <mat-label>NAME</mat-label>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Ex. zhang san">
+      </mat-form-field>
+      <button mat-icon-button matTooltip="add user" color="primary">
+        <mat-icon (click)="create()">add_circle</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="delete user" color="accent">
+        <mat-icon (click)="delete()">delete</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="reload users" color="primary">
+        <mat-icon style="font-weight: bold">refresh</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="settings" color="primary">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row" style="padding-top: 10px;">
+        <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="online">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="element.online" color="primary" class="table-cell-mat-icon">check_circle</mat-icon>
+        <mat-icon *ngIf="!element.online" style="color: #616161" class="table-cell-mat-icon">offline_pin</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Sex Column -->
+    <ng-container matColumnDef="sex">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Sex</th>
+      <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email</th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <!-- Phone Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Phone</th>
+      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    </ng-container>
+
+    <!-- Role Column -->
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Role</th>
+      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description</th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row [ngClass]="this.selection.isSelected(row) ? 'selected-row' : ''"
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>
+
+

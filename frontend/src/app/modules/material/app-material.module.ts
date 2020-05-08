@@ -17,6 +17,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {DomSanitizer} from '@angular/platform-browser';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import {FormsModule} from '@angular/forms';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatSelectModule} from '@angular/material/select';
 
 const materials = [
   MatToolbarModule,
@@ -35,7 +42,14 @@ const materials = [
   LayoutModule,
   MatProgressBarModule,
   MatMenuModule,
-  MatGridListModule
+  MatGridListModule,
+  MatTableModule,
+  MatDialogModule,
+  MatTooltipModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatSelectModule,
+  FormsModule
 ];
 
 const customIcons = [
@@ -49,7 +63,10 @@ const customIcons = [
   'panda',
   'peach',
   'sloth',
-  'sun'
+  'sun',
+  'gender',
+  'role',
+  'user'
 ];
 
 @NgModule({
