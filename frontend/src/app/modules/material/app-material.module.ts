@@ -40,7 +40,16 @@ const materials = [
 
 const customIcons = [
   'github',
-  'signin'
+  'signin',
+  'bear',
+  'bird',
+  'carrot',
+  'dinosaur',
+  'girl',
+  'panda',
+  'peach',
+  'sloth',
+  'sun'
 ];
 
 @NgModule({
