@@ -11,9 +11,9 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
       <mat-sidenav-container fxFlex="grow">
         <mat-sidenav mode="side" class="mat-elevation-z4" style="width: 240px;" [opened]="openSideNav">
           <mat-nav-list dense>
-            <mat-list-item routerLink="/dashboard">
-              <mat-icon>dashboard</mat-icon>
-              Dashboard
+            <mat-list-item routerLink="/home">
+              <mat-icon>home</mat-icon>
+              HOME
             </mat-list-item>
             <mat-list-item routerLink="/general">
               <mat-icon>check_box</mat-icon>

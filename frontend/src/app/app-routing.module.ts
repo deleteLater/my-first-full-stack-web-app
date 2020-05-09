@@ -11,6 +11,7 @@ const routes: Routes = [
     path: '', component: ShellComponent, children: [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent},
+      {path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
       {path: 'general', loadChildren: () => import('./modules/general/general.module').then(m => m.GeneralModule)},
     ]
   },
