@@ -19,11 +19,11 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
               <mat-icon>check_box</mat-icon>
               General
             </mat-list-item>
-            <mat-list-item routerLink="">
+            <mat-list-item routerLink="/page-in-building">
               <mat-icon>person</mat-icon>
               Profile
             </mat-list-item>
-            <mat-list-item routerLink="">
+            <mat-list-item routerLink="/page-in-building">
               <mat-icon>notification_important</mat-icon>
               Notification
             </mat-list-item>
@@ -32,10 +32,10 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
                 Preference
               </mat-expansion-panel-header>
               <mat-nav-list dense>
-                <a mat-list-item routerLink="">
+                <a mat-list-item routerLink="/page-in-building">
                   <mat-icon>attach_money</mat-icon>
                   Billing</a>
-                <a mat-list-item routerLink="">
+                <a mat-list-item routerLink="/page-in-building">
                   <mat-icon>notification_important</mat-icon>
                   Notification</a>
               </mat-nav-list>
@@ -45,10 +45,10 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
                 Privacy
               </mat-expansion-panel-header>
               <mat-nav-list dense>
-                <a mat-list-item routerLink="">
+                <a mat-list-item routerLink="/page-in-building">
                   <mat-icon>person_add</mat-icon>
                   Partnership Request</a>
-                <a mat-list-item routerLink="">
+                <a mat-list-item routerLink="/page-in-building">
                   <mat-icon>visibility</mat-icon>
                   Profile Visibility</a>
               </mat-nav-list>
