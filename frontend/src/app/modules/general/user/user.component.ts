@@ -114,42 +114,43 @@ export class UserComponent implements OnInit {
       width: '500px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.openSnackBar('create success.');
+    dialogRef.afterClosed().subscribe(formValue => {
+      console.log(formValue);
+
+      this.openSnackBar(formValue ? 'create success' : 'user cancel');
     });
   }
 
   delete() {
-    if (this.selection.hasValue()) {
-
-      const userSimpleInfo = this.selection.selected.map(user => {
-        return {
-          name: user.name,
-          avatar: user.avatar,
-          description: user.description
-        };
-      });
-
-      const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
-        disableClose: true,
-        autoFocus: true,
-        width: '400px',
-        data: userSimpleInfo
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
-        this.openSnackBar('delete success.');
-      });
+    if (!this.selection.hasValue()) {
+      this.openSnackBar('no operation should be taken!');
+      return;
     }
 
-    console.log('no operation should be taken!');
+    const userSimpleInfo = this.selection.selected.map(user => {
+      return {
+        name: user.name,
+        avatar: user.avatar,
+        description: user.description
+      };
+    });
+
+    const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
+      disableClose: true,
+      autoFocus: true,
+      width: '400px',
+      data: userSimpleInfo
+    });
+
+    dialogRef.afterClosed().subscribe(deleted => {
+      this.openSnackBar(deleted ? 'delete success' : 'user cancel');
+    });
   }
 
   private openSnackBar(msg: string) {
     this.snackBar.openFromComponent(UserSnackBarComponent, {
       data: msg,
+      duration: 1500,
       horizontalPosition: 'end',
       panelClass: ['common-snackbar']
     });

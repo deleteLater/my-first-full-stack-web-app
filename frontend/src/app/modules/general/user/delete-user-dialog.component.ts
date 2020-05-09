@@ -17,8 +17,8 @@ import {SimpleUserInfo} from './user.component';
       </mat-list>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="cancel()">Cancel</button>
-      <button mat-button cdkFocusInitial (click)="delete()">Ok</button>
+      <button mat-button (click)="cancel()">CANCEL</button>
+      <button mat-button cdkFocusInitial (click)="delete()">OK</button>
     </div>
   `,
   styles: []
@@ -36,10 +36,10 @@ export class DeleteUserDialogComponent implements OnInit {
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   delete() {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }
