@@ -13,6 +13,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {TextMaskModule} from 'angular2-text-mask';
 import {DeleteUserDialogComponent} from './user/delete-user-dialog.component';
 import {StringTruncatePipe} from '../../shared/pipes/string-truncate.pipe';
+import {UserSnackBarComponent} from './user/user-snack-bar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {StringTruncatePipe} from '../../shared/pipes/string-truncate.pipe';
     PermissionComponent,
     AddUserDialogComponent,
     DeleteUserDialogComponent,
-    StringTruncatePipe
+    StringTruncatePipe,
+    UserSnackBarComponent
   ],
   imports: [
     CommonModule,

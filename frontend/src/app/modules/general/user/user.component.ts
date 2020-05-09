@@ -6,6 +6,8 @@ import {MatSort} from '@angular/material/sort';
 import {AddUserDialogComponent} from './add-user-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteUserDialogComponent} from './delete-user-dialog.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {UserSnackBarComponent} from './user-snack-bar.component';
 
 export interface UserDialogDto {
   user: User;
@@ -59,7 +61,8 @@ export class UserComponent implements OnInit {
   @ViewChild(MatTable, {static: true}) table: MatTable<any>;
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -113,6 +116,7 @@ export class UserComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
+      this.openSnackBar('create success.');
     });
   }
 
@@ -136,9 +140,18 @@ export class UserComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log(result);
+        this.openSnackBar('delete success.');
       });
     }
 
     console.log('no operation should be taken!');
+  }
+
+  private openSnackBar(msg: string) {
+    this.snackBar.openFromComponent(UserSnackBarComponent, {
+      data: msg,
+      horizontalPosition: 'end',
+      panelClass: ['common-snackbar']
+    });
   }
 }
