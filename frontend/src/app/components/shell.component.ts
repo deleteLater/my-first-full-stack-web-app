@@ -16,15 +16,15 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
               HOME
             </mat-list-item>
             <mat-list-item routerLink="/general">
-              <mat-icon>check_box</mat-icon>
+              <mat-icon>widgets</mat-icon>
               General
             </mat-list-item>
             <mat-list-item routerLink="/page-in-building">
-              <mat-icon>person</mat-icon>
+              <mat-icon>person_pin</mat-icon>
               Profile
             </mat-list-item>
             <mat-list-item routerLink="/page-in-building">
-              <mat-icon>notification_important</mat-icon>
+              <mat-icon>notifications</mat-icon>
               Notification
             </mat-list-item>
             <mat-expansion-panel class="mat-elevation-z0" dense>
@@ -36,8 +36,8 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
                   <mat-icon>attach_money</mat-icon>
                   Billing</a>
                 <a mat-list-item routerLink="/page-in-building">
-                  <mat-icon>notification_important</mat-icon>
-                  Notification</a>
+                  <mat-icon>settings_applications</mat-icon>
+                  Statics</a>
               </mat-nav-list>
             </mat-expansion-panel>
             <mat-expansion-panel class="mat-elevation-z0" dense>
@@ -65,7 +65,7 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
   `,
   styles: [`
     mat-icon {
-      font-size: 28px;
+      font-size: 30px;
       margin-right: 10px;
     }
 
