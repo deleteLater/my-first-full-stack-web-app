@@ -12,7 +12,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {PageNotFoundComponent} from './components/error/page-not-found.component';
 import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ChartsModule} from 'ng2-charts';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -23,8 +22,7 @@ import {HttpClientModule} from '@angular/common/http';
     NavComponent,
     AuthenticateComponent,
     PageNotFoundComponent,
-    InternalServerErrorComponent,
-    DashboardComponent
+    InternalServerErrorComponent
   ],
   imports: [
     BrowserModule,

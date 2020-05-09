@@ -4,13 +4,11 @@ import {ShellComponent} from './components/shell.component';
 import {AuthenticateComponent} from './components/authenticate/authenticate.component';
 import {PageNotFoundComponent} from './components/error/page-not-found.component';
 import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '', component: ShellComponent, children: [
-      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardComponent},
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
       {path: 'general', loadChildren: () => import('./modules/general/general.module').then(m => m.GeneralModule)},
     ]
