@@ -6,3 +6,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .common-snackbar {
   background: #ffffff;
 }
+
+/* custom global mat-tab */
+.mat-tab-label {
+  padding: 0 !important;
+  min-width: 120px !important;
+
+  &:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+}
+
+.mat-tab-label-active {
+  color: #3367d6;
+}
+
+.mat-tab-nav-bar, .mat-tab-header {
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
