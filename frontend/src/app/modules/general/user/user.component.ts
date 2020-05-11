@@ -8,24 +8,11 @@ import {MatDialog} from '@angular/material/dialog';
 import {DeleteUserDialogComponent} from './delete-user-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserSnackBarComponent} from './user-snack-bar.component';
+import {User} from '../../../models/user';
 
 export interface UserDialogDto {
   user: User;
   action: string;
-}
-
-class User {
-  constructor(
-    public id: number,
-    public name: string,
-    public sex: string,
-    public avatar: string,
-    public email: string,
-    public phone: string,
-    public role: string,
-    public description?: string,
-    public online?: boolean) {
-  }
 }
 
 export interface SimpleUserInfo {
