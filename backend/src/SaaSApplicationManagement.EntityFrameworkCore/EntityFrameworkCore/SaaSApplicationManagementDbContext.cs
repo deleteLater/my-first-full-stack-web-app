@@ -25,6 +25,7 @@ namespace SaaSApplicationManagement.EntityFrameworkCore
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside SaaSApplicationManagementDbContextModelCreatingExtensions.ConfigureSaaSApplicationManagement
          */
+        public DbSet<CommonUser> CommonUsers { get; set; }
 
         public SaaSApplicationManagementDbContext(DbContextOptions<SaaSApplicationManagementDbContext> options)
             : base(options)

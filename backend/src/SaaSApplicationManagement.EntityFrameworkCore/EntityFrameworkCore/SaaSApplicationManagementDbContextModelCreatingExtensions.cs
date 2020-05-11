@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SaaSApplicationManagement.Users;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
+using Volo.Abp.Identity;
 
 namespace SaaSApplicationManagement.EntityFrameworkCore
 {
@@ -11,12 +14,39 @@ namespace SaaSApplicationManagement.EntityFrameworkCore
 
             /* Configure your own tables/entities inside here */
 
-            //builder.Entity<YourEntity>(b =>
-            //{
-            //    b.ToTable(SaaSApplicationManagementConsts.DbTablePrefix + "YourEntities", SaaSApplicationManagementConsts.DbSchema);
+            builder.Entity<CommonUser>(user =>
+            {
+                user.ToTable(
+                    $"{SaaSApplicationManagementConsts.DbTablePrefix}.CommonUser",
+                    SaaSApplicationManagementConsts.DbSchema
+                );
+                
+                user.ConfigureFullAuditedAggregateRoot();
 
-            //    //...
-            //});
+                user.Property(nameof(CommonUser.Name))
+                    .IsRequired()
+                    .HasMaxLength(IdentityUserConsts.MaxNameLength);
+                user.Property(nameof(CommonUser.Avatar))
+                    .HasMaxLength(CommonUserConsts.MaxAvatarLength)
+                    .HasDefaultValue("default");
+                user.Property(nameof(CommonUser.Sex))
+                    .IsRequired()
+                    .HasMaxLength(CommonUserConsts.MaxSexLength);
+                user.Property(nameof(CommonUser.Roles))
+                    .HasMaxLength(CommonUserConsts.MaxRolesLength);
+                user.Property(nameof(CommonUser.Online))
+                    .IsRequired()
+                    .HasDefaultValue(false);
+                user.Property(nameof(CommonUser.Phone))
+                    .IsRequired()
+                    .HasMaxLength(IdentityUserConsts.MaxPhoneNumberLength);
+                user.Property(nameof(CommonUser.Email))
+                    .IsRequired()
+                    .HasMaxLength(IdentityUserConsts.MaxEmailLength);
+                user.Property(nameof(CommonUser.Description))
+                    .IsRequired()
+                    .HasMaxLength(CommonUserConsts.MaxDescriptionLength);
+            });
         }
     }
 }
