@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SaaSApplicationManagement.HttpApi</name>
+    </assembly>
+    <members>
+        <member name="M:SaaSApplicationManagement.Controllers.AccountController.AccountLoginAsync(SaaSApplicationManagement.Models.LoginInput)">
+            <summary>
+            user login
+            </summary>
+        </member>
+        <member name="M:SaaSApplicationManagement.Controllers.CommonUserController.CreateAsync(SaaSApplicationManagement.Users.Dtos.CreateCommonUserDto)">
+            <summary>
+            create new common user
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SaaSApplicationManagement.Controllers.CommonUserController.GetListAsync(SaaSApplicationManagement.Users.Dtos.CommonUserFilter)">
+            <summary>
+            get common user paged-list
+            </summary>
+            <param name="filter">page params</param>
+            <returns></returns>
+        </member>
+        <member name="M:SaaSApplicationManagement.Controllers.CommonUserController.DeleteAsync(System.Int64)">
+            <summary>
+            delete a specific common user
+            </summary>
+            <param name="id">common user id</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

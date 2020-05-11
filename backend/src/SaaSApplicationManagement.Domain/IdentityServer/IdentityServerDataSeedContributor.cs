@@ -54,15 +54,11 @@ namespace SaaSApplicationManagement.IdentityServer
         {
             var commonApiUserClaims = new[]
             {
-                "email",
-                "email_verified",
                 "name",
-                "phone_number",
-                "phone_number_verified",
                 "role"
             };
 
-            await CreateApiResourceAsync("SaaSApplicationManagement", commonApiUserClaims);
+            await CreateApiResourceAsync(_configuration["IdentityServer:ApiName"], commonApiUserClaims);
         }
 
         private async Task<ApiResource> CreateApiResourceAsync(string name, IEnumerable<string> claims)
@@ -93,47 +89,22 @@ namespace SaaSApplicationManagement.IdentityServer
 
         private async Task CreateClientsAsync()
         {
+            var apiName = _configuration["IdentityServer:ApiName"];
+            
+            var clientId = _configuration["IdentityServer:WebClientId"];
+            var clientSecret = _configuration["IdentityServer:WebClientSecret"];
             var commonScopes = new[]
             {
-                "email",
-                "openid",
-                "profile",
-                "role",
-                "phone",
-                "address",
-                "SaaSApplicationManagement"
+                apiName
             };
 
-            var configurationSection = _configuration.GetSection("IdentityServer:Clients");
-
-            //Web Client
-            var webClientId = configurationSection["SaaSApplicationManagement_Web:ClientId"];
-            if (!webClientId.IsNullOrWhiteSpace())
-            {
-                var webClientRootUrl = configurationSection["SaaSApplicationManagement_Web:RootUrl"].EnsureEndsWith('/');
-
-                /* SaaSApplicationManagement_Web client is only needed if you created a tiered
-                 * solution. Otherwise, you can delete this client. */
-
-                await CreateClientAsync(
-                    webClientId,
-                    commonScopes,
-                    new[] { "hybrid" },
-                    (configurationSection["SaaSApplicationManagement_Web:ClientSecret"] ?? "1q2w3e*").Sha256(),
-                    redirectUri: $"{webClientRootUrl}signin-oidc",
-                    postLogoutRedirectUri: $"{webClientRootUrl}signout-callback-oidc"
-                );
-            }
-
-            //Console Test Client
-            var consoleClientId = configurationSection["SaaSApplicationManagement_App:ClientId"];
-            if (!consoleClientId.IsNullOrWhiteSpace())
+            if (!clientId.IsNullOrWhiteSpace())
             {
                 await CreateClientAsync(
-                    consoleClientId,
+                    clientId,
                     commonScopes,
                     new[] { "password", "client_credentials" },
-                    (configurationSection["SaaSApplicationManagement_App:ClientSecret"] ?? "1q2w3e*").Sha256()
+                    clientSecret.Sha256()
                 );
             }
         }
@@ -161,11 +132,12 @@ namespace SaaSApplicationManagement.IdentityServer
                         Description = name,
                         AlwaysIncludeUserClaimsInIdToken = true,
                         AllowOfflineAccess = true,
-                        AbsoluteRefreshTokenLifetime = 31536000, //365 days
-                        AccessTokenLifetime = 31536000, //365 days
+                        AbsoluteRefreshTokenLifetime = 6 * 3600, // 6个小时
+                        AccessTokenLifetime = 3 * 3600, // 3个小时
                         AuthorizationCodeLifetime = 300,
                         IdentityTokenLifetime = 300,
-                        RequireConsent = false
+                        RequireConsent = false,
+                        UpdateAccessTokenClaimsOnRefresh = true
                     },
                     autoSave: true
                 );
