@@ -20,7 +20,7 @@ namespace SaaSApplicationManagement.EntityFrameworkCore
     [ConnectionStringName("Default")]
     public class SaaSApplicationManagementDbContext : AbpDbContext<SaaSApplicationManagementDbContext>
     {
-        public DbSet<AppUser> Users { get; set; }
+        public DbSet<EnterpriseUser> Users { get; set; }
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside SaaSApplicationManagementDbContextModelCreatingExtensions.ConfigureSaaSApplicationManagement
@@ -38,7 +38,7 @@ namespace SaaSApplicationManagement.EntityFrameworkCore
 
             /* Configure the shared tables (with included modules) here */
 
-            builder.Entity<AppUser>(b =>
+            builder.Entity<EnterpriseUser>(b =>
             {
                 b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users"); //Sharing the same table "AbpUsers" with the IdentityUser
                 

@@ -12,7 +12,7 @@ namespace SaaSApplicationManagement.Users
      * - You can query users from database with this entity.
      * - You can update values of your custom properties.
      */
-    public class AppUser : FullAuditedAggregateRoot<Guid>, IUser
+    public class EnterpriseUser : FullAuditedAggregateRoot<Guid>, IUser
     {
         #region Base properties
 
@@ -55,7 +55,7 @@ namespace SaaSApplicationManagement.Users
          * schema change to the database.
          */
 
-        private AppUser()
+        private EnterpriseUser()
         {
             
         }

@@ -16,11 +16,11 @@ namespace SaaSApplicationManagement.EntityFrameworkCore.Samples
      */
     public class SampleRepositoryTests : SaaSApplicationManagementEntityFrameworkCoreTestBase
     {
-        private readonly IRepository<AppUser, Guid> _appUserRepository;
+        private readonly IRepository<EnterpriseUser, Guid> _appUserRepository;
 
         public SampleRepositoryTests()
         {
-            _appUserRepository = GetRequiredService<IRepository<AppUser, Guid>>();
+            _appUserRepository = GetRequiredService<IRepository<EnterpriseUser, Guid>>();
         }
 
         [Fact]
