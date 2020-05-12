@@ -18,7 +18,7 @@ import {SimpleUserInfo} from './user.component';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="cancel()">CANCEL</button>
-      <button mat-button cdkFocusInitial (click)="delete()">OK</button>
+      <button mat-button cdkFocusInitial (click)="delete()">DELETE</button>
     </div>
   `,
   styles: []
