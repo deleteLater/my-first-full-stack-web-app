@@ -3,7 +3,7 @@ import {MatTable, MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {AddUserDialogComponent} from './add-user-dialog.component';
+import {SaveUserDialogComponent} from './save-user-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteUserDialogComponent} from './delete-user-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -13,6 +13,12 @@ import {UserService} from '../../../services/user.service';
 import {PageParam} from '../../../models/page-param';
 import {iif, of, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {CrudOperation} from '../../../models/crud-operation.enum';
+
+export interface SaveUserInfo {
+  action: string;
+  user: User;
+}
 
 export interface SimpleUserInfo {
   name: string;
@@ -30,10 +36,12 @@ const allowMultiSelect = true;
 })
 export class UserComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['select', 'online', 'name', 'sex', 'role', 'phone', 'email', 'description', 'action'];
+  displayedColumns: string[] = ['select', 'id', 'online', 'name', 'sex', 'role', 'phone', 'email', 'description', 'action'];
   dataSource = new MatTableDataSource<User>();
   selection = new SelectionModel<User>(allowMultiSelect, initialSelection);
   total: number;
+
+  Operation = CrudOperation;
 
   private searchNames = new Subject<string>();
 
@@ -107,24 +115,42 @@ export class UserComponent implements OnInit, AfterViewInit {
     this.searchNames.next(name);
   }
 
-  create() {
-    const dialogRef = this.dialog.open(AddUserDialogComponent, {
+  save(info: SaveUserInfo) {
+    console.log(info);
+    const dialogRef = this.dialog.open(SaveUserDialogComponent, {
       disableClose: true,
       autoFocus: true,
-      width: '500px'
+      width: '500px',
+      data: info
     });
 
     dialogRef.afterClosed().subscribe(formValue => {
       console.log(formValue);
 
-      this.service.createUser(formValue).subscribe(
-        newUser => {
-          console.log(`create new user: ${newUser.id}`);
-          this.refreshAll(this.getCurrentPageParam());
+      if (formValue) {
+        switch (info.action) {
+          case this.Operation.Update:
+            this.service.updateUser(formValue).subscribe(
+              updatedUser => {
+                console.log(`update user: ${updatedUser.id}`);
+                this.refreshAll(this.getCurrentPageParam());
+              }
+            );
+            break;
+          case this.Operation.Create:
+            this.service.createUser(formValue).subscribe(
+              newUser => {
+                console.log(`create new user: ${newUser.id}`);
+                this.refreshAll(this.getCurrentPageParam());
+              }
+            );
+            break;
+          default:
+            break;
         }
-      );
+      }
 
-      this.openSnackBar(formValue ? 'create success' : 'user cancel');
+      this.openSnackBar(formValue ? `${info.action.toLowerCase()} success` : 'user cancel');
     });
   }
 
@@ -154,9 +180,11 @@ export class UserComponent implements OnInit, AfterViewInit {
       if (deleted) {
         this.selection.selected.forEach(user => {
           this.service.deleteUser(user.id)
-            .subscribe(() => console.log(`delete user: ${user.id}`));
+            .subscribe(() => {
+              console.log(`delete user successfully: ${user.id}`);
+              this.refreshAll(this.getCurrentPageParam());
+            });
         });
-        this.refreshAll(this.getCurrentPageParam());
       }
 
       this.openSnackBar(deleted ? 'delete success' : 'user cancel');

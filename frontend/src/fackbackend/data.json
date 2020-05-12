@@ -163,14 +163,14 @@
       "id": 15
     },
     {
+      "id": 16,
       "name": "zhang3",
       "sex": "boy",
       "role": "admin",
       "avatar": "default",
       "phone": "+86 153-3859-3769",
-      "email": "zhang3@qq.com",
-      "description": "wow, it's my new account",
-      "id": 16
+      "email": "zjx@gmail.com",
+      "description": "wow i am a new user"
     }
   ]
 }

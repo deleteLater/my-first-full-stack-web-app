@@ -60,7 +60,7 @@ export class UserService {
   }
 
   updateUser(user: User): Observable<any> {
-    return this.httpClient.put(this.baseUrl, user, this.httpOptions)
+    return this.httpClient.put(`${this.baseUrl}/${user.id}`, user, this.httpOptions)
       .pipe(
         tap(_ => console.log(`updated user id=${user.id}`)),
         catchError(this.handleError<any>(`updateUser`))

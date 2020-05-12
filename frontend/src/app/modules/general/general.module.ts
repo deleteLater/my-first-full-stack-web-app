@@ -8,7 +8,7 @@ import {UserComponent} from './user/user.component';
 import {RoleComponent} from './role/role.component';
 import {PermissionComponent} from './permission/permission.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {AddUserDialogComponent} from './user/add-user-dialog.component';
+import {SaveUserDialogComponent} from './user/save-user-dialog.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TextMaskModule} from 'angular2-text-mask';
 import {DeleteUserDialogComponent} from './user/delete-user-dialog.component';
@@ -21,7 +21,7 @@ import {UserSnackBarComponent} from './user/user-snack-bar.component';
     UserComponent,
     RoleComponent,
     PermissionComponent,
-    AddUserDialogComponent,
+    SaveUserDialogComponent,
     DeleteUserDialogComponent,
     StringTruncatePipe,
     UserSnackBarComponent

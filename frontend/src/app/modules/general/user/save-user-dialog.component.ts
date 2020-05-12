@@ -1,11 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, Validators} from '@angular/forms';
+import {SaveUserInfo} from './user.component';
 
 @Component({
-  selector: 'app-add-user-dialog',
   template: `
-    <h1 mat-dialog-title>CREATE</h1>
+    <h1 mat-dialog-title>{{data.action}}</h1>
     <div mat-dialog-content>
       <form [formGroup]="userForm">
         <!-- UserName -->
@@ -45,7 +45,8 @@ import {FormBuilder, Validators} from '@angular/forms';
         <mat-form-field appearance="outline">
           <mat-label>Phone</mat-label>
           <mat-icon matPrefix>phone</mat-icon>
-          <input matInput type="text" formControlName="phone" required id="phone" placeholder="+86 " [textMask]="{mask: phoneMask}">
+          <input matInput type="text" formControlName="phone" required id="phone" placeholder="+86 "
+                 [textMask]="{mask: phoneMask}">
           <mat-error *ngIf="userForm.controls.phone.hasError('required')">
             phone is required
           </mat-error>
@@ -71,7 +72,7 @@ import {FormBuilder, Validators} from '@angular/forms';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="cancel()">CANCEL</button>
-      <button mat-button (click)="addUser()" [disabled]="userForm.invalid">CREATE</button>
+      <button mat-button (click)="save()" [disabled]="userForm.invalid">{{data.action}}</button>
     </div>
   `,
   styles: [`
@@ -84,13 +85,14 @@ import {FormBuilder, Validators} from '@angular/forms';
     }
   `]
 })
-export class AddUserDialogComponent implements OnInit {
+export class SaveUserDialogComponent implements OnInit {
 
   phoneMask = ['+', '8', '6', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   roles = ['admin', 'common'];
 
   userForm = this.fb.group({
+      id: [''],
       name: ['', [Validators.required, Validators.max(15)]],
       sex: ['', [Validators.required]],
       role: [''],
@@ -103,9 +105,25 @@ export class AddUserDialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<AddUserDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private dialogRef: MatDialogRef<SaveUserDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: SaveUserInfo
   ) {
+    if (data.user) {
+      // update operation
+      const userToUpdate = data.user;
+      this.userForm.patchValue({
+        id: userToUpdate.id,
+        name: userToUpdate.name,
+        sex: userToUpdate.sex,
+        role: userToUpdate.role,
+        avatar: userToUpdate.avatar,
+        phone: userToUpdate.phone,
+        email: userToUpdate.email,
+        description: userToUpdate.description
+      });
+    }
+
+    // else create operation
   }
 
   ngOnInit(): void {
@@ -115,7 +133,7 @@ export class AddUserDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  addUser() {
+  save() {
     this.dialogRef.close(this.userForm.value);
   }
 }
