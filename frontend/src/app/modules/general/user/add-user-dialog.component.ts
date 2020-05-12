@@ -71,7 +71,7 @@ import {FormBuilder, Validators} from '@angular/forms';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="cancel()">CANCEL</button>
-      <button mat-button cdkFocusInitial (click)="addUser()" [disabled]="userForm.invalid">CREATE</button>
+      <button mat-button (click)="addUser()" [disabled]="userForm.invalid">CREATE</button>
     </div>
   `,
   styles: [`
