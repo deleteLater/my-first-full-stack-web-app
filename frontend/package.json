@@ -7,6 +7,7 @@
     "build": "ng build",
     "test": "jest",
     "test:watch": "jest --watch",
+    "fackbackend": "json-server --watch ./src/fackbackend/data.json",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
