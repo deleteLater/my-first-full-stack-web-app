@@ -68,7 +68,8 @@ const customIcons = [
   'sun',
   'gender',
   'role',
-  'user'
+  'user',
+  'default'
 ];
 
 @NgModule({
