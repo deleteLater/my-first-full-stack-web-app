@@ -36,7 +36,7 @@ import {FormBuilder, Validators} from '@angular/forms';
         <mat-form-field appearance="outline">
           <mat-label>Roles</mat-label>
           <mat-icon matPrefix>security</mat-icon>
-          <mat-select formControlName="roles" multiple>
+          <mat-select formControlName="role">
             <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -93,7 +93,8 @@ export class AddUserDialogComponent implements OnInit {
   userForm = this.fb.group({
       name: ['', [Validators.required, Validators.max(15)]],
       sex: ['', [Validators.required]],
-      roles: [''],
+      role: [''],
+      avatar: ['default'],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       description: [''],
