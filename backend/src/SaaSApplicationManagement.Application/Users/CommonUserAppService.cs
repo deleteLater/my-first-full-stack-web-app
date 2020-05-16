@@ -18,6 +18,7 @@ namespace SaaSApplicationManagement.Users
         public async Task<CommonUserDto> CreateAsync(CreateCommonUserDto input)
         {
             var user = new CommonUser(
+                CurrentTenant.Id,
                 input.Name,
                 input.Password,
                 input.Phone,

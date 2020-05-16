@@ -1,11 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.MultiTenancy;
 
 namespace SaaSApplicationManagement.Users
 {
-    public class CommonUser : FullAuditedAggregateRoot<long>
+    public class CommonUser : FullAuditedAggregateRoot<long>, IMultiTenant
     {
+        public Guid? TenantId { get; protected set; }
+        
         public string Name { get; protected set; }
 
         public string Avatar { get; protected set; }
@@ -29,6 +33,7 @@ namespace SaaSApplicationManagement.Users
         }
 
         public CommonUser(
+            Guid? tenantId,
             [NotNull] string name,
             [NotNull] string password,
             [NotNull] string phone,
@@ -40,6 +45,8 @@ namespace SaaSApplicationManagement.Users
             string avatar = "default"
         )
         {
+            TenantId = tenantId;
+            
             Name = Check.NotNullOrWhiteSpace(name, nameof(name));
             Password = Check.NotNullOrWhiteSpace(password, nameof(password));
             Phone = Check.NotNullOrWhiteSpace(phone, nameof(phone));

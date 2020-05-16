@@ -26,6 +26,7 @@ namespace SaaSApplicationManagement
             await _serviceProvider.GetRequiredService<ICommonUserRepository>()
                 .InsertAsync(
                     new CommonUser(
+                        null,
                         "test-common",
                         "123456",
                         "15338593769",

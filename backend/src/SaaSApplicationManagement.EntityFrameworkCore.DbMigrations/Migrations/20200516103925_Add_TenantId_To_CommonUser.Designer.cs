@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SaaSApplicationManagement.EntityFrameworkCore;
 
 namespace SaaSApplicationManagement.Migrations
 {
     [DbContext(typeof(SaaSApplicationManagementMigrationsDbContext))]
-    partial class SaaSApplicationManagementMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200516103925_Add_TenantId_To_CommonUser")]
+    partial class Add_TenantId_To_CommonUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
