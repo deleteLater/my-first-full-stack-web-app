@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <mat-card>
   <div fxLayout="row" fxLayoutAlign="space-between" style="margin: 10px">
     <mat-card-title fxFlexAlign="center">Users</mat-card-title>
@@ -12,7 +13,7 @@
       <button mat-icon-button matTooltip="delete user" color="accent">
         <mat-icon (click)="delete()">delete</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="reload users" color="primary">
+      <button mat-icon-button matTooltip="reload users" color="primary" (click)="refreshCurrentData()">
         <mat-icon style="font-weight: bold">refresh</mat-icon>
       </button>
       <button mat-icon-button matTooltip="settings" color="primary">

@@ -63,7 +63,7 @@ export class UserComponent implements OnInit, AfterViewInit {
     const pageParam = this.getCurrentPageParam();
 
     // Init DataSource
-    this.refreshAll(pageParam);
+    this.refresh(pageParam);
     this.dataSource.sort = this.sort;
 
     // Search By Name
@@ -80,7 +80,7 @@ export class UserComponent implements OnInit, AfterViewInit {
         this.total = users.length;
         this.table.renderRows();
       } else {
-        this.refreshAll(pageParam);
+        this.refresh(pageParam);
       }
     });
   }
@@ -133,7 +133,7 @@ export class UserComponent implements OnInit, AfterViewInit {
             this.service.updateUser(formValue).subscribe(
               updatedUser => {
                 console.log(`update user: ${updatedUser.id}`);
-                this.refreshAll(this.getCurrentPageParam());
+                this.refresh(this.getCurrentPageParam());
               }
             );
             break;
@@ -141,7 +141,7 @@ export class UserComponent implements OnInit, AfterViewInit {
             this.service.createUser(formValue).subscribe(
               newUser => {
                 console.log(`create new user: ${newUser.id}`);
-                this.refreshAll(this.getCurrentPageParam());
+                this.refresh(this.getCurrentPageParam());
               }
             );
             break;
@@ -182,7 +182,7 @@ export class UserComponent implements OnInit, AfterViewInit {
           this.service.deleteUser(user.id)
             .subscribe(() => {
               console.log(`delete user successfully: ${user.id}`);
-              this.refreshAll(this.getCurrentPageParam());
+              this.refresh(this.getCurrentPageParam());
             });
         });
       }
@@ -193,19 +193,25 @@ export class UserComponent implements OnInit, AfterViewInit {
 
   paginatorChanged($event: PageEvent) {
     console.log(`${JSON.stringify($event)}`);
-    this.refreshAll(new PageParam($event.pageIndex, $event.pageSize));
+    this.refresh(new PageParam($event.pageIndex, $event.pageSize));
+  }
+
+  refreshCurrentData() {
+    this.refresh(this.getCurrentPageParam());
+
+    this.openSnackBar('refresh all data success');
   }
 
   private openSnackBar(msg: string) {
     this.snackBar.openFromComponent(UserSnackBarComponent, {
       data: msg,
-      duration: 1500,
+      duration: 1000,
       horizontalPosition: 'end',
       panelClass: ['common-snackbar']
     });
   }
 
-  private refreshAll(pageParam: PageParam) {
+  private refresh(pageParam: PageParam) {
     this.service.getUsers(pageParam)
       .subscribe(response => {
           // specify to json-server
