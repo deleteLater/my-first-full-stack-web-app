@@ -66,6 +66,9 @@
               <mat-error *ngIf="registerForm.controls.email.hasError('required')">
                 email is required
               </mat-error>
+              <mat-error *ngIf="registerForm.controls.email.hasError('email')">
+                wrong email provided
+              </mat-error>
               <mat-hint>your email</mat-hint>
             </mat-form-field>
 

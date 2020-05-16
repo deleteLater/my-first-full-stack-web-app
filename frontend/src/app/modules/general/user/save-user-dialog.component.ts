@@ -60,6 +60,9 @@ import {SaveUserInfo} from './user.component';
           <mat-error *ngIf="userForm.controls.email.hasError('required')">
             email is required
           </mat-error>
+          <mat-error *ngIf="userForm.controls.email.hasError('email')">
+            wrong email provided
+          </mat-error>
         </mat-form-field>
 
         <!-- Description -->
