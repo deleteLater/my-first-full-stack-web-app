@@ -7,11 +7,11 @@
         <mat-label>NAME</mat-label>
         <input matInput (keyup)="searchByName($event.target.value)" placeholder="Ex. zhang san">
       </mat-form-field>
-      <button mat-icon-button matTooltip="add user" color="primary">
-        <mat-icon (click)="save({action: Operation.Create, user: null})">add_circle</mat-icon>
+      <button mat-icon-button matTooltip="add user" color="primary" (click)="save({action: Operation.Create, user: null})">
+        <mat-icon>add_circle</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="delete user" color="accent">
-        <mat-icon (click)="delete()">delete</mat-icon>
+      <button mat-icon-button matTooltip="delete user" color="accent" (click)="delete()">
+        <mat-icon>delete</mat-icon>
       </button>
       <button mat-icon-button matTooltip="reload users" color="primary" (click)="refreshCurrentData()">
         <mat-icon style="font-weight: bold">refresh</mat-icon>
