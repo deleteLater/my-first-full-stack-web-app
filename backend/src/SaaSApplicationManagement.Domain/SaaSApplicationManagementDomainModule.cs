@@ -1,4 +1,5 @@
-﻿using SaaSApplicationManagement.MultiTenancy;
+using System;
+using SaaSApplicationManagement.MultiTenancy;
 using SaaSApplicationManagement.ObjectExtending;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
@@ -39,6 +40,8 @@ namespace SaaSApplicationManagement
             {
                 options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
+            
+            Configure<AbpBackgroundJobWorkerOptions>(options => options.JobPollPeriod = (int) TimeSpan.FromMinutes(1).TotalMilliseconds);
         }
     }
 }
