@@ -18,5 +18,10 @@ namespace SaaSApplicationManagement.Users
             int maxResultCount = int.MaxValue,
             CancellationToken cancellationToken = default
         );
+
+        Task<CommonUser> GetByNameAsync(
+            string name,
+            CancellationToken cancellationToken = default
+        );
     }
 }

@@ -9,14 +9,21 @@ namespace SaaSApplicationManagement.Users
     public class CommonUserAppService : ApplicationService, ICommonUserAppService
     {
         private readonly ICommonUserRepository _repository;
+        private readonly CommonUserManager _manager;
 
-        public CommonUserAppService(ICommonUserRepository repository)
+        public CommonUserAppService(
+            ICommonUserRepository repository,
+            CommonUserManager manager
+            )
         {
             _repository = repository;
+            _manager = manager;
         }
 
         public async Task<CommonUserDto> CreateAsync(CreateCommonUserDto input)
         {
+            await _manager.CheckNameHaveBeenUsedAsync(input.Name);
+            
             var user = new CommonUser(
                 CurrentTenant.Id,
                 input.Name,
@@ -24,7 +31,8 @@ namespace SaaSApplicationManagement.Users
                 input.Phone,
                 input.Email,
                 input.Sex,
-                input.Description, input.Roles
+                input.Description, 
+                input.Roles
             );
 
             await _repository.InsertAsync(user);

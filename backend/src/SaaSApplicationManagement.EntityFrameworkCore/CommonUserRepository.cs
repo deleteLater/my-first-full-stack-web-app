@@ -46,5 +46,16 @@ namespace SaaSApplicationManagement
                 .PageBy(skipCount, maxResultCount)
                 .ToListAsync(GetCancellationToken(cancellationToken));
         }
+
+        public async Task<CommonUser> GetByNameAsync(
+            string name,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await DbSet.FirstOrDefaultAsync(
+                x => x.Name == name,
+                GetCancellationToken(cancellationToken)
+            );
+        }
     }
 }
