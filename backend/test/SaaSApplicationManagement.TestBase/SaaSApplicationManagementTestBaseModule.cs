@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
 using Volo.Abp.Authorization;
 using Volo.Abp.Autofac;
@@ -43,6 +44,13 @@ namespace SaaSApplicationManagement
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
+            var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
+            
+            configuration["IdentityServer:ApiName"] = "ExternalTrainingSystem";
+            configuration["IdentityServer:AuthorityServer"] = "http://localhost:5000";
+            configuration["IdentityServer:WebClientId"] = "ExternalTrainingSystem";
+            configuration["IdentityServer:WebClientSecret"] = "ExternalTrainingSystem_1q2w3E";
+            
             SeedTestData(context);
         }
 
