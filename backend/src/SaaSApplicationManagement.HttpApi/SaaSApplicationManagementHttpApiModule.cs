@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using SaaSApplicationManagement.EntityFrameworkCore;
@@ -16,6 +17,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.Identity.AspNetCore;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
+using Volo.Abp.MultiTenancy.ConfigurationStore;
 using Volo.Abp.PermissionManagement.HttpApi;
 using Volo.Abp.Settings;
 using Volo.Abp.TenantManagement;
@@ -44,6 +46,10 @@ namespace SaaSApplicationManagement
             ConfigureAuthentication(context.Services);
             ConfigureHttpClientFactory(context.Services);
             ConfigureSwaggerServices(context);
+            
+            var configuration = BuildConfiguration();
+            
+            Configure<AbpDefaultTenantStoreOptions>(configuration);
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -116,6 +122,14 @@ namespace SaaSApplicationManagement
         private static void ConfigureHttpClientFactory(IServiceCollection services)
         {
             services.AddHttpClient();
+        }
+
+        private static IConfigurationRoot BuildConfiguration()
+        {
+            return new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
         }
     }
 }
