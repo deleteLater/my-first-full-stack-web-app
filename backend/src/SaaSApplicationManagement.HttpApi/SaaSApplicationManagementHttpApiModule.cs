@@ -66,7 +66,7 @@ namespace SaaSApplicationManagement
             app.UseMvcWithDefaultRouteAndArea();
 
             app.UseSwagger();
-            app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "BookStore API"); });
+            app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "version 0.1"); });
         }
 
         public override void OnPostApplicationInitialization(ApplicationInitializationContext context)
