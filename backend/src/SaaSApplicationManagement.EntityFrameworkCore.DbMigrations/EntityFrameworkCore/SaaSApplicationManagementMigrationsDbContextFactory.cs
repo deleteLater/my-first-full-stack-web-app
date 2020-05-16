@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace SaaSApplicationManagement.EntityFrameworkCore
 {
@@ -9,6 +10,8 @@ namespace SaaSApplicationManagement.EntityFrameworkCore
      * (like Add-Migration and Update-Database commands) */
     public class SaaSApplicationManagementMigrationsDbContextFactory : IDesignTimeDbContextFactory<SaaSApplicationManagementMigrationsDbContext>
     {
+        public static readonly ILoggerFactory ConsoleLogger = LoggerFactory.Create(builder => builder.AddConsole());
+        
         public SaaSApplicationManagementMigrationsDbContext CreateDbContext(string[] args)
         {
             SaaSApplicationManagementEfCoreEntityExtensionMappings.Configure();
@@ -16,6 +19,7 @@ namespace SaaSApplicationManagement.EntityFrameworkCore
             var configuration = BuildConfiguration();
 
             var builder = new DbContextOptionsBuilder<SaaSApplicationManagementMigrationsDbContext>()
+                .UseLoggerFactory(ConsoleLogger)
                 .UseSqlServer(configuration.GetConnectionString("Default"));
 
             return new SaaSApplicationManagementMigrationsDbContext(builder.Options);
