@@ -40,6 +40,13 @@ namespace SaaSApplicationManagement.Users
             return ObjectMapper.Map<CommonUser, CommonUserDto>(user);
         }
 
+        public async Task<CommonUserDto> GetAsync(long id)
+        {
+            return ObjectMapper.Map<CommonUser, CommonUserDto>(
+                await _repository.GetAsync(id)
+            );
+        }
+
         public async Task<PagedResultDto<CommonUserDto>> GetListAsync(CommonUserFilter filter)
         {
             var total = await _repository.GetCountAsync(filter.Name);
@@ -50,6 +57,21 @@ namespace SaaSApplicationManagement.Users
                 total,
                 ObjectMapper.Map<List<CommonUser>, List<CommonUserDto>>(list)
             );
+        }
+
+        public async Task<CommonUserDto> UpdateAsync(long id, UpdateCommonUserDto input)
+        {
+            var user = await _repository.GetAsync(id);
+
+            user.UpdateInternal(
+                input.Name,
+                input.Sex,
+                input.Phone,
+                input.Email,
+                input.Description
+            );
+
+            return ObjectMapper.Map<CommonUser, CommonUserDto>(user);
         }
 
         public async Task DeleteAsync(long id)

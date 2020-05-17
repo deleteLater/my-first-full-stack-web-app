@@ -30,6 +30,17 @@ namespace SaaSApplicationManagement.Controllers
         }
 
         /// <summary>
+        /// get a specific common user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<CommonUserDto> GetAsync(long id)
+        {
+            return await _service.GetAsync(id);
+        }
+
+        /// <summary>
         /// get common user paged-list
         /// </summary>
         /// <param name="filter">page params</param>
@@ -38,6 +49,18 @@ namespace SaaSApplicationManagement.Controllers
         public async Task<PagedResultDto<CommonUserDto>> GetListAsync(CommonUserFilter filter)
         {
             return await _service.GetListAsync(filter);
+        }
+
+        /// <summary>
+        /// update a specific common user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<CommonUserDto> UpdateAsync(long id, [FromBody] UpdateCommonUserDto input)
+        {
+            return await _service.UpdateAsync(id, input);
         }
 
         /// <summary>

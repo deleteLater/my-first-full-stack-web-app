@@ -46,7 +46,7 @@ namespace SaaSApplicationManagement.Users
         )
         {
             TenantId = tenantId;
-            
+
             Name = Check.NotNullOrWhiteSpace(name, nameof(name));
             Password = Check.NotNullOrWhiteSpace(password, nameof(password));
             Phone = Check.NotNullOrWhiteSpace(phone, nameof(phone));
@@ -57,6 +57,22 @@ namespace SaaSApplicationManagement.Users
             Roles = roles;
             Online = online;
             Avatar = avatar;
+        }
+
+        public void UpdateInternal(
+            [NotNull] string name,
+            [NotNull] string phone,
+            [NotNull] string email,
+            [NotNull] string sex,
+            string description
+        )
+        {
+            Name = Check.NotNullOrWhiteSpace(name, nameof(name));
+            Phone = Check.NotNullOrWhiteSpace(phone, nameof(phone));
+            Email = Check.NotNullOrWhiteSpace(email, nameof(email));
+            Sex = Check.NotNullOrWhiteSpace(sex, nameof(sex));
+
+            Description = description;
         }
     }
 }

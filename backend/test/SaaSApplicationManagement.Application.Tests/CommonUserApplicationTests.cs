@@ -40,5 +40,31 @@ namespace SaaSApplicationManagement
             commonUser.TotalCount.ShouldBe(1);
             commonUser.Items[0].Email.ShouldBe("mikcczhang@gmail.com");
         }
+
+        [Fact]
+        public async Task Should_Get_Single_Common_User()
+        {
+            var commonUser = await _service.GetAsync(1);
+            
+            commonUser.Email.ShouldBe("mikcczhang@gmail.com");
+        }
+
+        [Fact]
+        public async Task Should_Update_A_Common_User()
+        {
+            const string newName = "newName";
+            
+            await _service.UpdateAsync(1, new UpdateCommonUserDto
+            {
+                Name = newName,
+                Email = "new@email.com",
+                Description = "new description",
+                Phone = "15338593769",
+                Sex = "boy"
+            });
+
+            var updated = await _service.GetAsync(1);
+            updated.Name.ShouldBe(newName);
+        }
     }
 }
