@@ -8,6 +8,8 @@
 
         public const int MaxRoleLength = 16;
 
+        public const int MaxPhoneLength = 32;
+
         public const int MaxDescriptionLength = 256;
     }
 }

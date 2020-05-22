@@ -39,7 +39,7 @@ namespace SaaSApplicationManagement.EntityFrameworkCore
                     .HasDefaultValue(false);
                 user.Property(nameof(CommonUser.Phone))
                     .IsRequired()
-                    .HasMaxLength(IdentityUserConsts.MaxPhoneNumberLength);
+                    .HasMaxLength(CommonUserConsts.MaxPhoneLength);
                 user.Property(nameof(CommonUser.Email))
                     .IsRequired()
                     .HasMaxLength(IdentityUserConsts.MaxEmailLength);
