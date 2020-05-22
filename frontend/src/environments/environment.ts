@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000' // test env json-server address
+  apiUrl: 'http://localhost:3000' // test env json-server address,
 };
 
 /*

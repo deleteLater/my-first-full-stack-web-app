@@ -5,13 +5,14 @@ import {User} from '../models/user';
 import {catchError, map, tap} from 'rxjs/operators';
 import {PageParam} from '../models/page-param';
 import {environment} from '../../environments/environment';
+import {PagedResult} from '../models/paged-result';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private baseUrl = `${environment.apiUrl}/users`;
+  private baseUrl = `${environment.apiUrl}/${environment.production ? 'common-user' : 'users'}`;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -23,24 +24,33 @@ export class UserService {
   }
 
   getUsers(pageParam: PageParam): Observable<any> {
-    return this.httpClient.get<User[]>(`${this.baseUrl}/${pageParam.generatePaginationQuery()}`, {observe: 'response'})
-      .pipe(
-        tap(value => console.log(`fetched users: ${value.body.length}`)),
-        catchError(this.handleError<User[]>('getUsers', []))
-      );
+    return this.httpClient.get<any>(
+      `${this.baseUrl}/${pageParam.generatePaginationQuery()}`, {observe: 'response'}
+    ).pipe(
+      tap(response => console.log(`fetched users: ${response.body.length ?? response.body.totalCount}`)),
+      catchError(this.handleError<User[]>('getUsers', []))
+    );
   }
 
-  getByName(name: string, pageParam: PageParam): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.baseUrl}`)
-      .pipe(
-        map(users => users
-          .filter(user => user.name.startsWith(name))
-          .slice(
-            pageParam.pageIndex * pageParam.pageSize,
-            (pageParam.pageIndex + 1) * pageParam.pageSize
-          )
+  getByName(name: string, pageParam: PageParam): Observable<any> {
+    return environment.production ?
+      this.httpClient.get<PagedResult>(`${this.baseUrl}/${pageParam.generatePaginationQuery()}&Name=${name}`)
+        .pipe(
+          catchError(this.handleError<PagedResult>('getByName', null))
         )
-      );
+      :
+      // json-server
+      this.httpClient.get<User[]>(`${this.baseUrl}`)
+        .pipe(
+          map(users => users
+            .filter(user => user.name.startsWith(name))
+            .slice(
+              pageParam.pageIndex * pageParam.pageSize,
+              (pageParam.pageIndex + 1) * pageParam.pageSize
+            )
+          ),
+          catchError(this.handleError<User[]>('getByName', []))
+        );
   }
 
   getUser(id: number): Observable<User> {
@@ -54,7 +64,7 @@ export class UserService {
   createUser(user: User) {
     return this.httpClient.post(this.baseUrl, user, this.httpOptions)
       .pipe(
-        tap((newUser: User) => console.log(`added user w/ id=${newUser.id}`),
+        tap((newUser: User) => console.log(`added user w/ id =${newUser.id}`),
           this.handleError('createUser', user)
         )
       );
@@ -63,7 +73,7 @@ export class UserService {
   updateUser(user: User): Observable<any> {
     return this.httpClient.put(`${this.baseUrl}/${user.id}`, user, this.httpOptions)
       .pipe(
-        tap(_ => console.log(`updated user id=${user.id}`)),
+        tap(_ => console.log(`updated user id =${user.id}`)),
         catchError(this.handleError<any>(`updateUser`))
       );
   }

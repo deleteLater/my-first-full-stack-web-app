@@ -14,6 +14,7 @@ import {PageParam} from '../../../models/page-param';
 import {iif, of, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {CrudOperation} from '../../../models/crud-operation.enum';
+import {environment} from '../../../../environments/environment';
 
 export interface SaveUserInfo {
   action: string;
@@ -36,7 +37,7 @@ const allowMultiSelect = true;
 })
 export class UserComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['select', 'id', 'online', 'name', 'sex', 'role', 'phone', 'email', 'description', 'action'];
+  displayedColumns: string[] = ['select', 'online', 'name', 'sex', 'role', 'phone', 'email', 'description', 'action'];
   dataSource = new MatTableDataSource<User>();
   selection = new SelectionModel<User>(allowMultiSelect, initialSelection);
   total: number;
@@ -74,11 +75,13 @@ export class UserComponent implements OnInit, AfterViewInit {
         iif(() => name !== '', this.service.getByName(name, pageParam), of([]))
       )
     ).subscribe((users) => {
-
-      if (users.length) {
-        this.dataSource.data = users;
-        this.total = users.length;
-        this.table.renderRows();
+      console.log(users);
+      if (users.items) {
+        // real production server
+        this.reRender(users.items, users.totalCount);
+      } else if (users.length) {
+        // json-server
+        this.reRender(users, users.length);
       } else {
         this.refresh(pageParam);
       }
@@ -131,18 +134,12 @@ export class UserComponent implements OnInit, AfterViewInit {
         switch (info.action) {
           case this.Operation.Update:
             this.service.updateUser(formValue).subscribe(
-              updatedUser => {
-                console.log(`update user: ${updatedUser.id}`);
-                this.refresh(this.getCurrentPageParam());
-              }
+              _ => this.refresh(this.getCurrentPageParam())
             );
             break;
           case this.Operation.Create:
             this.service.createUser(formValue).subscribe(
-              newUser => {
-                console.log(`create new user: ${newUser.id}`);
-                this.refresh(this.getCurrentPageParam());
-              }
+              _ => this.refresh(this.getCurrentPageParam())
             );
             break;
           default:
@@ -214,13 +211,24 @@ export class UserComponent implements OnInit, AfterViewInit {
   private refresh(pageParam: PageParam) {
     this.service.getUsers(pageParam)
       .subscribe(response => {
-          // specify to json-server
-          this.total = response.headers.get('X-Total-Count');
-          this.dataSource.data = response.body;
+          if (environment.production) {
+            this.total = response.body.totalCount;
+            this.dataSource.data = response.body.items;
+          } else {
+            // specify to json-server
+            this.total = response.headers.get('X-Total-Count');
+            this.dataSource.data = response.body;
+          }
           this.selection.clear();
           this.table.renderRows();
         }
       );
+  }
+
+  private reRender(data: User[], total: number) {
+    this.dataSource.data = data;
+    this.total = total;
+    this.table.renderRows();
   }
 
   private getCurrentPageParam(): PageParam {

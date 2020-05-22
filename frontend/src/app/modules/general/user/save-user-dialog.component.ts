@@ -34,7 +34,7 @@ import {SaveUserInfo} from './user.component';
 
         <!-- Role -->
         <mat-form-field appearance="outline">
-          <mat-label>Roles</mat-label>
+          <mat-label>Role</mat-label>
           <mat-icon matPrefix>security</mat-icon>
           <mat-select formControlName="role">
             <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
@@ -92,10 +92,10 @@ export class SaveUserDialogComponent implements OnInit {
 
   phoneMask = ['+', '8', '6', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
-  roles = ['admin', 'common'];
+  roles = ['admin', 'common', 'test'];
 
   userForm = this.fb.group({
-      id: [''],
+      id: [0],
       name: ['', [Validators.required, Validators.max(15)]],
       sex: ['', [Validators.required]],
       role: [''],
