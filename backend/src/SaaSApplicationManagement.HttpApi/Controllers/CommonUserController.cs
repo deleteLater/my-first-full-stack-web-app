@@ -57,7 +57,7 @@ namespace SaaSApplicationManagement.Controllers
         /// <param name="id"></param>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<CommonUserDto> UpdateAsync(long id, [FromBody] UpdateCommonUserDto input)
         {
             return await _service.UpdateAsync(id, input);
@@ -68,7 +68,7 @@ namespace SaaSApplicationManagement.Controllers
         /// </summary>
         /// <param name="id">common user id</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task DeleteAsync(long id)
         {
             await _service.DeleteAsync(id);
