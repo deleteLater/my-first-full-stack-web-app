@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using SaaSApplicationManagement.EntityFrameworkCore;
@@ -42,6 +41,7 @@ namespace SaaSApplicationManagement
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            ConfigureCors(context.Services);
             ConfigureAuthentication(context.Services);
             ConfigureHttpClientFactory(context.Services);
             ConfigureSwaggerServices(context);
@@ -51,12 +51,14 @@ namespace SaaSApplicationManagement
         {
             var app = context.GetApplicationBuilder();
 
-            app.UseCors("Default");
+            var env = context.GetConfiguration();
+
             app.UseAuthentication();
             app.UseJwtTokenMiddleware();
             app.UseAuditing();
             app.UseIdentityServer();
             app.UseRouting();
+            app.UseCors(env["DefaultCors:DefaultCorsPolicyName"]);
             app.UseMultiTenancy();
             app.UseMvcWithDefaultRouteAndArea();
 
@@ -141,6 +143,18 @@ namespace SaaSApplicationManagement
         private static void ConfigureHttpClientFactory(IServiceCollection services)
         {
             services.AddHttpClient();
+        }
+
+        private static void ConfigureCors(IServiceCollection services)
+        {
+            var env = services.GetConfiguration();
+
+            services.AddCors(options => options.AddPolicy(env["DefaultCors:DefaultCorsPolicyName"],
+                builder => builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithOrigins(env["DefaultCors:DefaultCorsOrigins"].Split(',')))
+            );
         }
     }
 }
