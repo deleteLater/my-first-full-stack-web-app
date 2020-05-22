@@ -6,6 +6,7 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {PageParam} from '../models/page-param';
 import {environment} from '../../environments/environment';
 import {PagedResult} from '../models/paged-result';
+import {TenantService} from './tenant.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +20,15 @@ export class UserService {
   };
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private tenantService: TenantService
   ) {
   }
 
   getUsers(pageParam: PageParam): Observable<any> {
     return this.httpClient.get<any>(
-      `${this.baseUrl}/${pageParam.generatePaginationQuery()}`, {observe: 'response'}
+      `${this.baseUrl}/${pageParam.generatePaginationQuery()}`,
+      {observe: 'response', headers: {__tenant: `${this.tenantService.getTenant()}`}}
     ).pipe(
       tap(response => console.log(`fetched users: ${response.body.length ?? response.body.totalCount}`)),
       catchError(this.handleError<User[]>('getUsers', []))

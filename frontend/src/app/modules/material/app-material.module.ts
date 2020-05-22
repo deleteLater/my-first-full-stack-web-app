@@ -69,6 +69,9 @@ const customIcons = [
   'gender',
   'role',
   'user',
+  'host',
+  'tenant1',
+  'tenant2',
   'default'
 ];
 

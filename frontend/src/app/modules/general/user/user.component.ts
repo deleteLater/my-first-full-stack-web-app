@@ -15,6 +15,7 @@ import {iif, of, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {CrudOperation} from '../../../models/crud-operation.enum';
 import {environment} from '../../../../environments/environment';
+import {TenantService} from '../../../services/tenant.service';
 
 export interface SaveUserInfo {
   action: string;
@@ -53,7 +54,8 @@ export class UserComponent implements OnInit, AfterViewInit {
   constructor(
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private service: UserService
+    private service: UserService,
+    private tenantService: TenantService
   ) {
   }
 
@@ -186,6 +188,11 @@ export class UserComponent implements OnInit, AfterViewInit {
 
       this.openSnackBar(deleted ? 'delete success' : 'user cancel');
     });
+  }
+
+  changeTenant(tenant: string) {
+    this.tenantService.changeTenant(tenant);
+    this.refresh(this.getCurrentPageParam());
   }
 
   paginatorChanged($event: PageEvent) {
