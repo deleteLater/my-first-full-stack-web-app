@@ -27,12 +27,11 @@ namespace SaaSApplicationManagement.Users
             var user = new CommonUser(
                 CurrentTenant.Id,
                 input.Name,
-                input.Password,
                 input.Phone,
                 input.Email,
                 input.Sex,
                 input.Description, 
-                input.Roles
+                input.Role
             );
 
             await _repository.InsertAsync(user);
@@ -68,6 +67,7 @@ namespace SaaSApplicationManagement.Users
                 input.Sex,
                 input.Phone,
                 input.Email,
+                input.Role,
                 input.Description
             );
 

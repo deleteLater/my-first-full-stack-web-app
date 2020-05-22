@@ -6,7 +6,7 @@
 
         public const int MaxAvatarLength = 128;
 
-        public const int MaxRolesLength = 16;
+        public const int MaxRoleLength = 16;
 
         public const int MaxDescriptionLength = 256;
     }

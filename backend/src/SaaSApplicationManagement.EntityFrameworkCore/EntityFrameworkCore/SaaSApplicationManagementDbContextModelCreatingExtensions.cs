@@ -32,8 +32,8 @@ namespace SaaSApplicationManagement.EntityFrameworkCore
                 user.Property(nameof(CommonUser.Sex))
                     .IsRequired()
                     .HasMaxLength(CommonUserConsts.MaxSexLength);
-                user.Property(nameof(CommonUser.Roles))
-                    .HasMaxLength(CommonUserConsts.MaxRolesLength);
+                user.Property(nameof(CommonUser.Role))
+                    .HasMaxLength(CommonUserConsts.MaxRoleLength);
                 user.Property(nameof(CommonUser.Online))
                     .IsRequired()
                     .HasDefaultValue(false);

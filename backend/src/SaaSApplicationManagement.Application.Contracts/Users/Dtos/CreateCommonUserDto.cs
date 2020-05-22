@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Volo.Abp.Auditing;
 using Volo.Abp.Identity;
 
 namespace SaaSApplicationManagement.Users.Dtos
@@ -11,11 +10,6 @@ namespace SaaSApplicationManagement.Users.Dtos
         public string Name { get; set; }
         
         [Required]
-        [StringLength(IdentityUserConsts.MaxPasswordLength)]
-        [DisableAuditing]
-        public string Password { get; set; }
-        
-        [Required]
         [EmailAddress]
         [StringLength(IdentityUserConsts.MaxEmailLength)]
         public string Email { get; set; }
@@ -24,8 +18,8 @@ namespace SaaSApplicationManagement.Users.Dtos
         [StringLength(CommonUserConsts.MaxSexLength)]
         public string Sex { get; set; }
 
-        [StringLength(CommonUserConsts.MaxRolesLength)]
-        public string Roles { get; set; }
+        [StringLength(CommonUserConsts.MaxRoleLength)]
+        public string Role { get; set; }
 
         [Required]
         public string Phone { get; set; }

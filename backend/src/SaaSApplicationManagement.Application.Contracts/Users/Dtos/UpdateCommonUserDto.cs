@@ -20,6 +20,9 @@ namespace SaaSApplicationManagement.Users.Dtos
 
         [Required]
         public string Phone { get; set; }
+        
+        [Required]
+        public string Role { get; set; }
 
         [StringLength(CommonUserConsts.MaxDescriptionLength)]
         public string Description { get; set; }

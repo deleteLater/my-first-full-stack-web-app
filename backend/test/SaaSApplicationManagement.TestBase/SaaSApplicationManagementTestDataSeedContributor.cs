@@ -28,7 +28,6 @@ namespace SaaSApplicationManagement
                     new CommonUser(
                         null,
                         "test-common",
-                        "123456",
                         "15338593769",
                         "mikcczhang@gmail.com",
                         "boy",

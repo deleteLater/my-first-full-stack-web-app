@@ -23,9 +23,8 @@ namespace SaaSApplicationManagement
                 Name = "jack",
                 Description = "wow, it's awesome",
                 Email = "jack@test.com",
-                Password = "1q2w3E*",
                 Phone = "15338593769",
-                Roles = "admin",
+                Role = "admin",
                 Sex = "boy"
             });
             
@@ -53,6 +52,7 @@ namespace SaaSApplicationManagement
         public async Task Should_Update_A_Common_User()
         {
             const string newName = "newName";
+            const string newRole = "admin";
             
             await _service.UpdateAsync(1, new UpdateCommonUserDto
             {
@@ -60,11 +60,13 @@ namespace SaaSApplicationManagement
                 Email = "new@email.com",
                 Description = "new description",
                 Phone = "15338593769",
-                Sex = "boy"
+                Sex = "boy",
+                Role = newRole
             });
 
             var updated = await _service.GetAsync(1);
             updated.Name.ShouldBe(newName);
+            updated.Role.ShouldBe(newRole);
         }
     }
 }

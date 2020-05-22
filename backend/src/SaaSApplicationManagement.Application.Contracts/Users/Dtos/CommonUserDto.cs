@@ -2,6 +2,8 @@
 {
     public class CommonUserDto
     {
+        public long Id { get; set; }
+	
         public string Name { get; set; }
 
         public string Phone { get; set; }
@@ -12,7 +14,7 @@
         
         public string Avatar { get; set; }
 
-        public string Roles { get; set; }
+        public string Role { get; set; }
 
         public string Description { get; set; }
 
