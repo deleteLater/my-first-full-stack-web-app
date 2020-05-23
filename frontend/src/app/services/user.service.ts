@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {User} from '../models/user';
 import {catchError, map, tap} from 'rxjs/operators';
@@ -14,10 +14,6 @@ import {TenantService} from './tenant.service';
 export class UserService {
 
   private baseUrl = `${environment.apiUrl}/${environment.production ? 'common-user' : 'users'}`;
-
-  httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  };
 
   constructor(
     private httpClient: HttpClient,
@@ -37,7 +33,9 @@ export class UserService {
 
   getByName(name: string, pageParam: PageParam): Observable<any> {
     return environment.production ?
-      this.httpClient.get<PagedResult>(`${this.baseUrl}/${pageParam.generatePaginationQuery()}&Name=${name}`)
+      this.httpClient.get<PagedResult>(
+        `${this.baseUrl}/${pageParam.generatePaginationQuery()}&Name=${name}`,
+        {headers: {__tenant: `${this.tenantService.getTenant()}`}})
         .pipe(
           catchError(this.handleError<PagedResult>('getByName', null))
         )
@@ -65,7 +63,7 @@ export class UserService {
   }
 
   createUser(user: User) {
-    return this.httpClient.post(this.baseUrl, user, this.httpOptions)
+    return this.httpClient.post(this.baseUrl, user, this.getHttpHeader())
       .pipe(
         tap((newUser: User) => console.log(`added user w/ id =${newUser.id}`),
           this.handleError('createUser', user)
@@ -74,7 +72,7 @@ export class UserService {
   }
 
   updateUser(user: User): Observable<any> {
-    return this.httpClient.put(`${this.baseUrl}/${user.id}`, user, this.httpOptions)
+    return this.httpClient.put(`${this.baseUrl}/${user.id}`, user, this.getHttpHeader())
       .pipe(
         tap(_ => console.log(`updated user id =${user.id}`)),
         catchError(this.handleError<any>(`updateUser`))
@@ -82,7 +80,7 @@ export class UserService {
   }
 
   deleteUser(id: number) {
-    return this.httpClient.delete(`${this.baseUrl}/${id}`, this.httpOptions)
+    return this.httpClient.delete(`${this.baseUrl}/${id}`, this.getHttpHeader())
       .pipe(
         tap(_ => console.log(`delete user ${id}`)),
         catchError(this.handleError('deleteUser'))
@@ -95,5 +93,9 @@ export class UserService {
       console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
+  }
+
+  private getHttpHeader() {
+    return {headers: {'Content-Type': 'application/json', __tenant: `${this.tenantService.getTenant()}`}};
   }
 }
