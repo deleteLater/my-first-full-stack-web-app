@@ -38,6 +38,7 @@ const allowMultiSelect = true;
 })
 export class UserComponent implements OnInit, AfterViewInit {
 
+  env = environment;
   displayedColumns: string[] = ['select', 'online', 'name', 'sex', 'role', 'phone', 'email', 'description', 'action'];
   dataSource = new MatTableDataSource<User>();
   selection = new SelectionModel<User>(allowMultiSelect, initialSelection);

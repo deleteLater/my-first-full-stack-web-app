@@ -4,7 +4,7 @@
     <mat-card-title fxFlexAlign="center">
       <div fxLayoutAlign="center">
         Users
-        <label>TEST ONLY</label>
+        <label *ngIf="!env.production">TEST ONLY</label>
       </div>
     </mat-card-title>
     <div fxFlexAlign="center">
@@ -21,13 +21,13 @@
       <button mat-icon-button matTooltip="reload users" color="primary" (click)="refreshCurrentData()">
         <mat-icon style="font-weight: bold">refresh</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="settings" color="primary" [matMenuTriggerFor]="menu">
+      <button mat-icon-button matTooltip="change tenant" color="primary" [matMenuTriggerFor]="menu">
         <mat-icon>settings</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="changeTenant('')">
           <mat-icon svgIcon="host"></mat-icon>
-          <span>TENANT 1</span>
+          <span>HOST</span>
         </button>
         <button mat-menu-item (click)="changeTenant('tenant1')">
           <mat-icon svgIcon="tenant1"></mat-icon>
