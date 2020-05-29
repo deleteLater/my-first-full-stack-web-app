@@ -96,7 +96,7 @@ export class SaveUserDialogComponent implements OnInit {
 
   userForm = this.fb.group({
       id: [0],
-      name: ['', [Validators.required, Validators.max(15)]],
+      name: ['', [Validators.required, Validators.maxLength(15)]],
       sex: ['', [Validators.required]],
       role: [''],
       avatar: ['default'],
