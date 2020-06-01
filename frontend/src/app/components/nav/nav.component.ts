@@ -12,6 +12,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
       <div class="spacer"></div>
 
+      <a mat-button routerLink="/pricing">PRICING</a>
       <a mat-button routerLink="/page-not-found">NOT FOUND</a>
       <a mat-button routerLink="/error">ERROR</a>
       <a mat-button (click)="toggleLoadingBar()">SLOW LOAD</a>
