@@ -14,6 +14,7 @@ import {PageNotFoundComponent} from './components/error/page-not-found.component
 import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
 import {ChartsModule} from 'ng2-charts';
 import {HttpClientModule} from '@angular/common/http';
+import {ForTestComponent} from './components/for-test/for-test.component';
 import {PageInBuildingComponent} from './components/error/page-in-building.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import {PageInBuildingComponent} from './components/error/page-in-building.compo
     NavComponent,
     AuthenticateComponent,
     PageNotFoundComponent,
+    ForTestComponent,
     InternalServerErrorComponent,
     PageInBuildingComponent
   ],
