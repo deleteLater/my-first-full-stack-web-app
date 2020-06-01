@@ -16,6 +16,8 @@ import {ChartsModule} from 'ng2-charts';
 import {HttpClientModule} from '@angular/common/http';
 import {ForTestComponent} from './components/for-test/for-test.component';
 import {PageInBuildingComponent} from './components/error/page-in-building.component';
+import {PricingComponent} from './components/pricing/pricing.component';
+import {TenantRegistrationDialogComponent} from './components/pricing/tenant-registration-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {PageInBuildingComponent} from './components/error/page-in-building.compo
     PageNotFoundComponent,
     ForTestComponent,
     InternalServerErrorComponent,
-    PageInBuildingComponent
+    PageInBuildingComponent,
+    PricingComponent,
+    TenantRegistrationDialogComponent,
   ],
   imports: [
     BrowserModule,

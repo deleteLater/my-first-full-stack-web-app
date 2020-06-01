@@ -6,6 +6,7 @@ import {PageNotFoundComponent} from './components/error/page-not-found.component
 import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
 import {ForTestComponent} from './components/for-test/for-test.component';
 import {PageInBuildingComponent} from './components/error/page-in-building.component';
+import {PricingComponent} from './components/pricing/pricing.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     ]
   },
   {path: 'authenticate', component: AuthenticateComponent},
+  {path: 'pricing', component: PricingComponent},
   {path: 'error', component: InternalServerErrorComponent},
   {path: 'page-in-building', component: PageInBuildingComponent},
   {path: 'test-page', component: ForTestComponent},

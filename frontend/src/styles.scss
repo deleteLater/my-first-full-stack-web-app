@@ -24,3 +24,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-tab-nav-bar, .mat-tab-header {
   border-bottom: 1px solid rgba(0,0,0,0.12);
 }
+
+/* custom global mat-step */
+.mat-vertical-content {
+  padding-bottom: 0 !important;
+}

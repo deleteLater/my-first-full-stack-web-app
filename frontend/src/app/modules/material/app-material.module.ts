@@ -25,6 +25,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const materials = [
   MatToolbarModule,
@@ -42,6 +44,7 @@ const materials = [
   MatRippleModule,
   LayoutModule,
   MatProgressBarModule,
+  MatProgressSpinnerModule,
   MatMenuModule,
   MatGridListModule,
   MatTableModule,
@@ -51,6 +54,7 @@ const materials = [
   MatSortModule,
   MatSelectModule,
   MatSnackBarModule,
+  MatStepperModule,
   FormsModule
 ];
 
@@ -72,7 +76,8 @@ const customIcons = [
   'host',
   'tenant1',
   'tenant2',
-  'default'
+  'default',
+  'superman'
 ];
 
 @NgModule({
