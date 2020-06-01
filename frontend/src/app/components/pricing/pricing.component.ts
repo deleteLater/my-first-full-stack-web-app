@@ -20,14 +20,10 @@ export class PricingComponent implements OnInit {
   }
 
   afterBuy() {
-    const dialogRef = this.dialog.open(TenantRegistrationDialogComponent, {
+    this.dialog.open(TenantRegistrationDialogComponent, {
       disableClose: true,
       autoFocus: true,
       width: '400px'
     });
-
-    dialogRef.afterClosed().subscribe(
-      value => console.log(value)
-    );
   }
 }

@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {HelperService} from '../../services/helper.service';
 import {MatStepper} from '@angular/material/stepper';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-tenant-dialog',
@@ -56,13 +57,13 @@ import {MatStepper} from '@angular/material/stepper';
           <ng-template matStepLabel>Done</ng-template>
           <div style="margin-top: 5px">
             <p style="font-size: 14px; font-weight: bold; display: inline-block">You are now done.&nbsp;&nbsp;</p>
-            <a routerLink="/authenticate" (click)="close()"><strong>Login Now?</strong></a>
+            <button mat-button (click)="close(true)">Login Now?</button>
           </div>
         </mat-step>
       </mat-vertical-stepper>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="close()">OK</button>
+      <button mat-button (click)="close(true)">OK</button>
     </div>
   `,
   styles: [`
@@ -102,6 +103,7 @@ export class TenantRegistrationDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private helper: HelperService,
+    private router: Router,
     private dialogRef: MatDialogRef<TenantRegistrationDialogComponent>
   ) {
   }
@@ -109,7 +111,14 @@ export class TenantRegistrationDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  close() {
+  close(redirect: boolean = false) {
+    if (redirect) {
+      this.dialogRef.afterClosed()
+        .subscribe(
+          _ => this.router.navigate(['/authenticate']).then(() => console.log('to authenticate'))
+        );
+    }
+
     this.dialogRef.close('');
   }
 
