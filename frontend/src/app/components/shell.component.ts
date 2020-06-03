@@ -15,18 +15,25 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
               <mat-icon>home</mat-icon>
               HOME
             </mat-list-item>
-            <mat-list-item routerLink="/general">
-              <mat-icon>widgets</mat-icon>
-              General
-            </mat-list-item>
-            <mat-list-item routerLink="/page-in-building">
-              <mat-icon>person_pin</mat-icon>
-              Profile
-            </mat-list-item>
             <mat-list-item routerLink="/page-in-building">
               <mat-icon>notifications</mat-icon>
               Notification
             </mat-list-item>
+            <mat-expansion-panel class="mat-elevation-z0" dense>
+              <mat-expansion-panel-header>
+                General
+              </mat-expansion-panel-header>
+              <mat-nav-list dense>
+                <a mat-list-item routerLink="/general/user">
+                  <mat-icon>group</mat-icon>
+                  Users
+                </a>
+                <a mat-list-item routerLink="/general/role">
+                  <mat-icon svgIcon="role"></mat-icon>
+                  Roles
+                </a>
+              </mat-nav-list>
+            </mat-expansion-panel>
             <mat-expansion-panel class="mat-elevation-z0" dense>
               <mat-expansion-panel-header>
                 Preference

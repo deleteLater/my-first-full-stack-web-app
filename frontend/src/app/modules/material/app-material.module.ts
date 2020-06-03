@@ -77,7 +77,8 @@ const customIcons = [
   'tenant1',
   'tenant2',
   'default',
-  'superman'
+  'superman',
+  'role'
 ];
 
 @NgModule({
