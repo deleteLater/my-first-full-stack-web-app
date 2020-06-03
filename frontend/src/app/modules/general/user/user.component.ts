@@ -11,7 +11,7 @@ import {UserSnackBarComponent} from './user-snack-bar.component';
 import {User} from '../../../models/user';
 import {UserService} from '../../../services/user.service';
 import {PageParam} from '../../../models/page-param';
-import {iif, of, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {CrudOperation} from '../../../models/crud-operation.enum';
 import {environment} from '../../../../environments/environment';
@@ -74,20 +74,9 @@ export class UserComponent implements OnInit, AfterViewInit {
     this.searchNames.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(name =>
-        iif(() => name !== '', this.service.getByName(name, pageParam), of([]))
-      )
-    ).subscribe((users) => {
-      console.log(users);
-      if (users.items) {
-        // real production server
-        this.reRender(users.items, users.totalCount);
-      } else if (users.length) {
-        // json-server
-        this.reRender(users, users.length);
-      } else {
-        this.refresh(pageParam);
-      }
+      switchMap(name => this.service.getByName(name, pageParam))
+    ).subscribe(users => {
+      this.reRender(users.items, users.totalCount, true);
     });
   }
 
@@ -133,22 +122,24 @@ export class UserComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(formValue => {
       console.log(formValue);
 
+      let action$ = null;
+
       if (formValue) {
         switch (info.action) {
           case this.Operation.Update:
-            this.service.updateUser(formValue).subscribe(
-              _ => this.refresh(this.getCurrentPageParam())
-            );
+            action$ = this.service.updateUser(formValue);
             break;
           case this.Operation.Create:
-            this.service.createUser(formValue).subscribe(
-              _ => this.refresh(this.getCurrentPageParam())
-            );
+            action$ = this.service.createUser(formValue);
             break;
           default:
             break;
         }
       }
+
+      action$?.subscribe(
+        _ => this.refresh(this.getCurrentPageParam())
+      );
 
       this.openSnackBar(formValue ? `${info.action.toLowerCase()} success` : 'user cancel');
     });
@@ -218,25 +209,21 @@ export class UserComponent implements OnInit, AfterViewInit {
 
   private refresh(pageParam: PageParam) {
     this.service.getUsers(pageParam)
-      .subscribe(response => {
-          if (environment.production) {
-            this.total = response.body.totalCount;
-            this.dataSource.data = response.body.items;
-          } else {
-            // specify to json-server
-            this.total = response.headers.get('X-Total-Count');
-            this.dataSource.data = response.body;
-          }
-          this.selection.clear();
-          this.table.renderRows();
+      .subscribe(result => {
+          this.reRender(result.items, result.totalCount, false);
         }
       );
   }
 
-  private reRender(data: User[], total: number) {
+  private reRender(data: User[], total: number, reset: boolean) {
     this.dataSource.data = data;
     this.total = total;
+    this.selection.clear();
     this.table.renderRows();
+
+    if (reset) {
+      this.paginator.pageIndex = 0;
+    }
   }
 
   private getCurrentPageParam(): PageParam {
