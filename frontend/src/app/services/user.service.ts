@@ -13,7 +13,7 @@ import {TenantService} from './tenant.service';
 })
 export class UserService {
 
-  private baseUrl = `${environment.apiUrl}/${environment.production ? 'common-user' : 'users'}`;
+  private baseUrl = `${environment.apiUrl}/common-user`;
   private header = {
     headers:
       {
