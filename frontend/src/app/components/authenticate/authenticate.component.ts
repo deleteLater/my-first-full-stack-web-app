@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccountService} from '../../services/account.service';
 
 @Component({
   selector: 'app-authenticate',
@@ -24,7 +25,9 @@ export class AuthenticateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private account: AccountService
   ) {
   }
 
@@ -36,9 +39,13 @@ export class AuthenticateComponent implements OnInit {
       return;
     }
 
-    console.log(this.loginForm.value);
-
-    this.router.navigate([''])
-      .then(result => `navigate to home: ${result}`);
+    if (action === 'login') {
+      this.account.login(this.loginForm.value)
+        .subscribe(_ =>
+          this.router.navigate([this.route.snapshot.queryParamMap.get('returnUrl') || '/'])
+            .then(result => `navigate to home: ${result}`)
+        );
+    } else if (action === 'register') {
+    }
   }
 }

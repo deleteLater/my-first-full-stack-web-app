@@ -7,10 +7,11 @@ import {InternalServerErrorComponent} from './components/error/internal-server-e
 import {ForTestComponent} from './components/for-test/for-test.component';
 import {PageInBuildingComponent} from './components/error/page-in-building.component';
 import {PricingComponent} from './components/pricing/pricing.component';
+import {AuthGuard} from './_helpers/auth.guard';
 
 const routes: Routes = [
   {
-    path: '', component: ShellComponent, children: [
+    path: '', component: ShellComponent, canActivate: [AuthGuard], children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
       {path: 'general', loadChildren: () => import('./modules/general/general.module').then(m => m.GeneralModule)},

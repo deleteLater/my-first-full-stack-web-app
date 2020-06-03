@@ -13,11 +13,12 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {PageNotFoundComponent} from './components/error/page-not-found.component';
 import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
 import {ChartsModule} from 'ng2-charts';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ForTestComponent} from './components/for-test/for-test.component';
 import {PageInBuildingComponent} from './components/error/page-in-building.component';
 import {PricingComponent} from './components/pricing/pricing.component';
 import {TenantRegistrationDialogComponent} from './components/pricing/tenant-registration-dialog.component';
+import {InternalFakeBackendInterceptor} from './_helpers/internal-fake-backend.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import {TenantRegistrationDialogComponent} from './components/pricing/tenant-reg
     ChartsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InternalFakeBackendInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
