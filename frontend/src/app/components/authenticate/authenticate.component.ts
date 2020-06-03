@@ -24,7 +24,7 @@ export class AuthenticateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: Router
+    private router: Router
   ) {
   }
 
@@ -38,7 +38,7 @@ export class AuthenticateComponent implements OnInit {
 
     console.log(this.loginForm.value);
 
-    this.route.navigate([''])
+    this.router.navigate([''])
       .then(result => `navigate to home: ${result}`);
   }
 }
