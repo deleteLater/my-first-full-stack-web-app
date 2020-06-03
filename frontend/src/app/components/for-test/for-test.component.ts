@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RoleService} from '../../services/role.service';
 
 @Component({
   selector: 'app-for-test',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForTestComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private role: RoleService
+  ) {
+  }
 
   ngOnInit(): void {
+    this.role.getAll();
   }
 
 }

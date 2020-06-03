@@ -19,6 +19,7 @@ import {PageInBuildingComponent} from './components/error/page-in-building.compo
 import {PricingComponent} from './components/pricing/pricing.component';
 import {TenantRegistrationDialogComponent} from './components/pricing/tenant-registration-dialog.component';
 import {InternalFakeBackendInterceptor} from './_helpers/internal-fake-backend.interceptor';
+import {JwtInterceptor} from './_helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {InternalFakeBackendInterceptor} from './_helpers/internal-fake-backend.i
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InternalFakeBackendInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
