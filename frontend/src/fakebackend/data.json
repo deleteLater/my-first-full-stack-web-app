@@ -132,34 +132,34 @@
       "online": false
     },
     {
+      "id": 13,
       "name": "user13",
       "sex": "boy",
       "role": "admin",
       "phone": "+86 153-3859-3769",
       "avatar": "default",
       "email": "zhang@gmail.com",
-      "description": "wow, it's very awesome",
-      "id": 13
+      "description": "wow, it's very awesome"
     },
     {
+      "id": 14,
       "name": "zhang1",
       "sex": "boy",
       "role": "admin",
       "phone": "+86 153-3859-3769",
       "avatar": "default",
       "email": "mikcczhang@gmail.com",
-      "description": "wow' it was pretty good....",
-      "id": 14
+      "description": "wow' it was pretty good...."
     },
     {
+      "id": 15,
       "name": "zhang2",
       "sex": "boy",
       "role": "common",
       "phone": "+86 153-3859-3769",
       "avatar": "default",
       "email": "zhang@qq.com",
-      "description": "写点儿什么吧",
-      "id": 15
+      "description": "写点儿什么吧"
     },
     {
       "id": 16,
