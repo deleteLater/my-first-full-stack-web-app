@@ -36,7 +36,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       background-color: #fff;
       color: #222b45;
       position: relative;
-      z-index: 9999;
+      z-index: 1000;
     }
 
     .login-btn {
