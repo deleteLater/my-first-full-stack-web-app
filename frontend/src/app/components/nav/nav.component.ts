@@ -1,4 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AccountService} from '../../services/account.service';
+import {User} from '../../models/user';
+import {MatDialog} from '@angular/material/dialog';
+import {AccountDialogComponent} from './account-dialog.component';
 
 // noinspection CssUnusedSymbol
 @Component({
@@ -22,12 +26,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
           <span>GITHUB</span>
         </div>
       </a>
-      <a mat-raised-button class="login-btn" routerLink="/authenticate">
-        <div class="icon-btn">
-          <mat-icon svgIcon="signin"></mat-icon>
-          <span>SIGN IN</span>
-        </div>
-      </a>
+      <button mat-mini-fab color="" class="mat-elevation-z0, account-btn" (click)="openAccountCard()">
+        <mat-icon [svgIcon]="currentUser.avatar"></mat-icon>
+      </button>
     </mat-toolbar>
   `,
   styles: [`
@@ -37,12 +38,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       color: #222b45;
       position: relative;
       z-index: 1000;
-    }
-
-    .login-btn {
-      background-color: #1389FD;
-      color: #fff;
-      padding: 0 10px;
     }
 
     .icon-btn {
@@ -56,6 +51,11 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
     .spacer {
       flex: 1 1 auto;
+    }
+
+    .account-btn {
+      font-size: small;
+      margin-left: 3px;
     }
 
     .icon-container {
@@ -87,8 +87,13 @@ export class NavComponent implements OnInit {
   openSideNav = true;
   @Output() showLoadingBarEvent = new EventEmitter();
   @Output() toggleSideNavEvent = new EventEmitter<boolean>();
+  currentUser: User;
 
-  constructor() {
+  constructor(
+    private account: AccountService,
+    private dialog: MatDialog
+  ) {
+    this.currentUser = this.account.currentUser();
   }
 
   ngOnInit(): void {
@@ -101,5 +106,16 @@ export class NavComponent implements OnInit {
 
   toggleLoadingBar() {
     this.showLoadingBarEvent.emit();
+  }
+
+  openAccountCard() {
+    this.dialog.open(AccountDialogComponent, {
+      hasBackdrop: false,
+      width: '350px',
+      position: {top: '48px', right: '0'},
+      role: 'alertdialog',
+      data: this.currentUser,
+      panelClass: ['account-card']
+    });
   }
 }

@@ -20,6 +20,7 @@ import {PricingComponent} from './components/pricing/pricing.component';
 import {TenantRegistrationDialogComponent} from './components/pricing/tenant-registration-dialog.component';
 import {InternalFakeBackendInterceptor} from './_helpers/internal-fake-backend.interceptor';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
+import {AccountDialogComponent} from './components/nav/account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {JwtInterceptor} from './_helpers/jwt.interceptor';
     PageInBuildingComponent,
     PricingComponent,
     TenantRegistrationDialogComponent,
+    AccountDialogComponent,
   ],
   imports: [
     BrowserModule,
