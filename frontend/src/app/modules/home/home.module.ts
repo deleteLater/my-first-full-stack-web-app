@@ -5,9 +5,10 @@ import {HomeRoutingModule} from './home-routing.module';
 import {HomeComponent} from './home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppMaterialModule} from '../material/app-material.module';
+import {TodoComponent} from './todo/todo.component';
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent],
+  declarations: [HomeComponent, DashboardComponent, TodoComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
