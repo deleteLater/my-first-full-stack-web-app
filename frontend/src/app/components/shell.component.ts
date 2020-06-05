@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
+import {SideNavService} from '../services/side-nav.service';
 
 // noinspection CssUnusedSymbol
 @Component({
   selector: 'app-shell',
   template: `
     <div style="height: 100%" fxLayout="column">
-      <app-nav (toggleSideNavEvent)="onToggleSideNav($event)" (showLoadingBarEvent)="onShowLoadingBar()"></app-nav>
+      <app-nav (showLoadingBarEvent)="onShowLoadingBar()"></app-nav>
       <mat-progress-bar mode="indeterminate" value="40" *ngIf="loading"></mat-progress-bar>
       <mat-sidenav-container fxFlex="grow">
-        <mat-sidenav mode="side" class="mat-elevation-z4" style="width: 240px;" [opened]="openSideNav">
+        <mat-sidenav mode="side" class="mat-elevation-z4" style="width: 240px;" [opened]="sidenav.opened()">
           <mat-nav-list dense>
             <mat-list-item routerLink="/home">
               <mat-icon>home</mat-icon>
@@ -63,7 +64,7 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
           </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-          <div [ngClass]="openSideNav ? 'sub-main' : ''">
+          <div [ngClass]="sidenav.opened() ? 'sub-main' : ''">
             <router-outlet></router-outlet>
           </div>
         </mat-sidenav-content>
@@ -96,11 +97,11 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
 })
 export class ShellComponent implements OnInit {
 
-  openSideNav = true;
   loading = true;
 
   constructor(
-    private router: Router
+    private router: Router,
+    public sidenav: SideNavService
   ) {
     this.router.events.subscribe(routeEvent => {
       switch (true) {
@@ -118,10 +119,6 @@ export class ShellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  onToggleSideNav(open: boolean) {
-    this.openSideNav = open;
   }
 
   onShowLoadingBar() {

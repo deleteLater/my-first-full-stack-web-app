@@ -3,6 +3,7 @@ import {AccountService} from '../../services/account.service';
 import {User} from '../../models/user';
 import {MatDialog} from '@angular/material/dialog';
 import {AccountDialogComponent} from './account-dialog.component';
+import {SideNavService} from '../../services/side-nav.service';
 
 // noinspection CssUnusedSymbol
 @Component({
@@ -10,7 +11,7 @@ import {AccountDialogComponent} from './account-dialog.component';
   template: `
     <mat-toolbar class="mat-elevation-z4">
       <div class="icon-container" matRipple (click)="toggleSideNav()">
-        <mat-icon>{{openSideNav ? 'menu_open' : 'menu'}}</mat-icon>
+        <mat-icon>{{sidenav.opened() ? 'menu_open' : 'menu'}}</mat-icon>
       </div>
       <a routerLink="" style="text-decoration: none; color: #222b45; font-size: 36px"><h1>Welcome</h1></a>
 
@@ -84,14 +85,13 @@ import {AccountDialogComponent} from './account-dialog.component';
 })
 export class NavComponent implements OnInit {
 
-  openSideNav = true;
   @Output() showLoadingBarEvent = new EventEmitter();
-  @Output() toggleSideNavEvent = new EventEmitter<boolean>();
   currentUser: User;
 
   constructor(
     private account: AccountService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public sidenav: SideNavService
   ) {
     this.currentUser = this.account.currentUser();
   }
@@ -100,8 +100,7 @@ export class NavComponent implements OnInit {
   }
 
   toggleSideNav() {
-    this.openSideNav = !this.openSideNav;
-    this.toggleSideNavEvent.emit(this.openSideNav);
+    this.sidenav.toggle();
   }
 
   toggleLoadingBar() {
