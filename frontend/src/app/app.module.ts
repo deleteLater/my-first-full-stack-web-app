@@ -21,6 +21,8 @@ import {TenantRegistrationDialogComponent} from './components/pricing/tenant-reg
 import {InternalFakeBackendInterceptor} from './_helpers/internal-fake-backend.interceptor';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
 import {AccountDialogComponent} from './components/nav/account-dialog.component';
+import {StoreModule} from '@ngrx/store';
+import {exampleReducer} from './components/for-test/example.reducer';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import {AccountDialogComponent} from './components/nav/account-dialog.component'
     FormsModule,
     FlexLayoutModule,
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({ status: exampleReducer })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InternalFakeBackendInterceptor, multi: true},

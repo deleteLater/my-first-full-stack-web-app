@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {RoleService} from '../../services/role.service';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {toggleStatus} from './example.actions';
 
 @Component({
   selector: 'app-for-test',
@@ -8,13 +10,16 @@ import {RoleService} from '../../services/role.service';
 })
 export class ForTestComponent implements OnInit {
 
-  constructor(
-    private role: RoleService
-  ) {
+  status$: Observable<boolean>;
+
+  constructor(private store: Store<{ status: boolean }>) {
+    this.status$ = store.pipe(select('status'));
+  }
+
+  toggle() {
+    this.store.dispatch(toggleStatus());
   }
 
   ngOnInit(): void {
-    this.role.getAll();
   }
-
 }
