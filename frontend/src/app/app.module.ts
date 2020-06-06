@@ -19,7 +19,7 @@ import {PageInBuildingComponent} from './components/error/page-in-building.compo
 import {PricingComponent} from './components/pricing/pricing.component';
 import {TenantRegistrationDialogComponent} from './components/pricing/tenant-registration-dialog.component';
 import {InternalFakeBackendInterceptor} from './_helpers/internal-fake-backend.interceptor';
-import {JwtInterceptor} from './_helpers/jwt.interceptor';
+import {AuthInterceptor} from './_helpers/auth.interceptor';
 import {AccountDialogComponent} from './components/nav/account-dialog.component';
 import {StoreModule} from '@ngrx/store';
 import {exampleReducer} from './components/for-test/example.reducer';
@@ -52,7 +52,7 @@ import {exampleReducer} from './components/for-test/example.reducer';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InternalFakeBackendInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

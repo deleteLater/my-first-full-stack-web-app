@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {EMPTY, Observable} from 'rxjs';
 import {User} from '../models/user';
 import {catchError, map, tap} from 'rxjs/operators';
 import {PageParam} from '../models/page-param';
 import {environment} from '../../environments/environment';
 import {PagedResult} from '../models/paged-result';
-import {TenantService} from './tenant.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +13,19 @@ import {TenantService} from './tenant.service';
 export class UserService {
 
   private baseUrl = `${environment.apiUrl}/common-user`;
-  private header = {
-    headers:
+  private httpOptions = {
+    headers: new HttpHeaders(
       {
         'Content-Type': 'application/json',
-        __tenant: `${this.tenantService.getTenant()}`
-      }
+      },
+    )
   };
 
-  constructor(
-    private httpClient: HttpClient,
-    private tenantService: TenantService
-  ) {
-  }
+  constructor(private httpClient: HttpClient) { }
 
   getUsers(pageParam: PageParam): Observable<PagedResult<User>> {
     return this.httpClient.get<PagedResult<User>>(
-      `${this.baseUrl}/${pageParam.generatePaginationQuery()}`, this.header
+      `${this.baseUrl}/${pageParam.generatePaginationQuery()}`, this.httpOptions,
     ).pipe(
       tap(result => console.log(`fetched users: ${result.items.length}`)),
       catchError(this.handleError('getUsers'))
@@ -44,7 +39,7 @@ export class UserService {
 
     return environment.production ?
       this.httpClient.get<PagedResult<User>>(
-        `${this.baseUrl}/${pageParam.generatePaginationQuery()}&Name=${name}`, this.header)
+        `${this.baseUrl}/${pageParam.generatePaginationQuery()}&Name=${name}`, this.httpOptions)
         .pipe(
           catchError(this.handleError('getByName'))
         )
@@ -77,7 +72,7 @@ export class UserService {
   }
 
   createUser(user: User) {
-    return this.httpClient.post(this.baseUrl, user, this.header)
+    return this.httpClient.post(this.baseUrl, user, this.httpOptions)
       .pipe(
         tap((newUser: User) => console.log(`added user w/ id =${newUser.id}`),
           this.handleError('createUser')
@@ -86,7 +81,7 @@ export class UserService {
   }
 
   updateUser(user: User): Observable<User> {
-    return this.httpClient.put(`${this.baseUrl}/${user.id}`, user, this.header)
+    return this.httpClient.put(`${this.baseUrl}/${user.id}`, user, this.httpOptions)
       .pipe(
         tap(_ => console.log(`updated user id =${user.id}`)),
         catchError(this.handleError(`updateUser`))
@@ -94,7 +89,7 @@ export class UserService {
   }
 
   deleteUser(id: number) {
-    return this.httpClient.delete(`${this.baseUrl}/${id}`, this.header)
+    return this.httpClient.delete(`${this.baseUrl}/${id}`, this.httpOptions)
       .pipe(
         tap(_ => console.log(`delete user ${id}`)),
         catchError(this.handleError('deleteUser'))
