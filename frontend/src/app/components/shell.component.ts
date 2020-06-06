@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import {SideNavService} from '../services/side-nav.service';
+import {MatDialog} from '@angular/material/dialog';
 
 // noinspection CssUnusedSymbol
 @Component({
@@ -101,9 +102,12 @@ export class ShellComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private dialog: MatDialog,
     public sidenav: SideNavService
   ) {
     this.router.events.subscribe(routeEvent => {
+      this.dialog.closeAll();
+
       switch (true) {
         case routeEvent instanceof NavigationStart:
           this.loading = true;
