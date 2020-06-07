@@ -22,7 +22,7 @@ import {SideNavService} from '../../services/side-nav.service';
       <a mat-button routerLink="/error">ERROR</a>
       <a mat-button (click)="toggleLoadingBar()">SLOW LOAD</a>
       <a mat-button href="https://github.com/deleteLater/my-first-full-stack-web-app" target="_blank">
-        <div class="icon-btn">
+        <div class="icon-text">
           <mat-icon svgIcon="github"></mat-icon>
           <span>GITHUB</span>
         </div>
@@ -39,15 +39,6 @@ import {SideNavService} from '../../services/side-nav.service';
       color: #222b45;
       position: relative;
       z-index: 1000;
-    }
-
-    .icon-btn {
-      display: flex;
-      align-items: center;
-    }
-
-    .icon-btn span {
-      margin-left: 6px;
     }
 
     .spacer {

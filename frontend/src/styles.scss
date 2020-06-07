@@ -3,6 +3,16 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+/* shared style */
+.icon-text {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-left: 6px;
+  }
+}
+
 /* custom dialog panel class */
 .common-snackbar {
   background: #ffffff;
