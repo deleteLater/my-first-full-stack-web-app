@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {User} from '../../models/user';
-import {AccountService} from '../../services/account.service';
+import {User} from '@modules/general/user/shared/user';
+import {AccountService} from '@core/account.service';
 
 @Component({
   selector: 'app-account-dialog',

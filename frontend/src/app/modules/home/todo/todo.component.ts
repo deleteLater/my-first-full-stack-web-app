@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Todo} from '../../../models/todo';
-import {User} from '../../../models/user';
+import {Todo} from './shared/todo';
+import {User} from '../../general/user/shared/user';
 
 @Component({
   selector: 'app-todo',

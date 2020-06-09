@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {EMPTY, Observable} from 'rxjs';
-import {User} from '../models/user';
+import {User} from './user';
 import {catchError, map, tap} from 'rxjs/operators';
-import {PageParam} from '../models/page-param';
-import {environment} from '../../environments/environment';
-import {PagedResult} from '../models/paged-result';
+import {PageParam} from '@shared/app-models/page-param';
+import {environment} from '@env';
+import {PagedResult} from '@shared/app-models/paged-result';
 
 @Injectable({
   providedIn: 'root'

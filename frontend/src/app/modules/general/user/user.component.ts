@@ -8,14 +8,14 @@ import {MatDialog} from '@angular/material/dialog';
 import {DeleteUserDialogComponent} from './delete-user-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserSnackBarComponent} from './user-snack-bar.component';
-import {User} from '../../../models/user';
-import {UserService} from '../../../services/user.service';
-import {PageParam} from '../../../models/page-param';
+import {User} from './shared/user';
+import {UserService} from './shared/user.service';
+import {PageParam} from '@shared/app-models/page-param';
 import {Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import {CrudOperation} from '../../../models/crud-operation.enum';
-import {environment} from '../../../../environments/environment';
-import {TenantService} from '../../../services/tenant.service';
+import {CrudOperation} from '@shared/app-models/crud-operation.enum';
+import {environment} from '@env';
+import {TenantService} from '@core/tenant.service';
 
 export interface SaveUserInfo {
   action: string;

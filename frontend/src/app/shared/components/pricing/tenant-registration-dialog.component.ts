@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
-import {HelperService} from '../../services/helper.service';
+import {HelperService} from '@core/helper.service';
 import {MatStepper} from '@angular/material/stepper';
 import {Router} from '@angular/router';
 
@@ -47,7 +47,7 @@ import {Router} from '@angular/router';
 
         <mat-step [editable]="false">
           <ng-template matStepLabel>Pay Now</ng-template>
-          <img src="../../../assets/img/example-qr-code.png" alt="example-qr-code.png">
+          <img src="../../../../assets/img/example-qr-code.png" alt="example-qr-code.png">
           <div style="text-align: end">
             <button mat-button color="warn" matStepperNext>PAY LATER</button>
           </div>

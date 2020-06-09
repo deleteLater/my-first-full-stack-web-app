@@ -1,4 +1,4 @@
-import {environment} from '../../environments/environment';
+import {environment} from '@env';
 
 export class PageParam {
   constructor(public pageIndex: number = 0, public pageSize: number = 10) {

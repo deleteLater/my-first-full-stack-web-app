@@ -8,7 +8,7 @@ import {Location} from '@angular/common';
       <div class="content">
         <h1 id="h1-500">Internal Server Error</h1>
         <p id="p-500">we are sorry for that and try to fix this soon.</p>
-        <img src="../../../assets/img/500.png" alt="not-found image">
+        <img src="../../../../assets/img/500.png" alt="not-found image">
         <a id="a-500" mat-stroked-button (click)="back()">TAKE ME BACK</a>
       </div>
     </div>

@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
     <div class="container">
       <div class="content">
         <h1 id="h1-404">Page Not Found</h1>
-        <img src="../../../assets/img/404.gif" alt="not-found image">
+        <img src="../../../../assets/img/404.gif" alt="not-found image">
         <a id="a-404" mat-stroked-button routerLink="">BACK TO HOME</a>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
-import {SideNavService} from '../services/side-nav.service';
+import {SideNavService} from './nav/shared/side-nav.service';
 import {MatDialog} from '@angular/material/dialog';
 
 // noinspection CssUnusedSymbol

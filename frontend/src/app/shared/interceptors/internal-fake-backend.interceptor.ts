@@ -38,7 +38,7 @@ export class InternalFakeBackendInterceptor implements HttpInterceptor {
             email: 'mikcczhang@gmail.com',
             phone: '+86 15338593769',
             role: 'admin',
-            description: 'this is a fack user',
+            description: 'this is a fake user',
             online: true
           }
         })

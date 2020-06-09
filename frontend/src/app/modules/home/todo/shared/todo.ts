@@ -1,4 +1,4 @@
-import {User} from './user';
+import {User} from '../../../general/user/shared/user';
 
 export interface Comment {
   commenter: User;

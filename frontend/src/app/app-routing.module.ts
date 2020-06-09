@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {ShellComponent} from './components/shell.component';
-import {AuthenticateComponent} from './components/authenticate/authenticate.component';
-import {PageNotFoundComponent} from './components/error/page-not-found.component';
-import {InternalServerErrorComponent} from './components/error/internal-server-error.component';
-import {ForTestComponent} from './components/for-test/for-test.component';
-import {PageInBuildingComponent} from './components/error/page-in-building.component';
-import {PricingComponent} from './components/pricing/pricing.component';
-import {AuthGuard} from './_helpers/auth.guard';
+import {ShellComponent} from '@shared/components/shell.component';
+import {AuthenticateComponent} from '@shared/components/authenticate/authenticate.component';
+import {PageNotFoundComponent} from '@shared/components/error/page-not-found.component';
+import {InternalServerErrorComponent} from '@shared/components/error/internal-server-error.component';
+import {ForTestComponent} from '@shared/components/for-test/for-test.component';
+import {PageInBuildingComponent} from '@shared/components/error/page-in-building.component';
+import {PricingComponent} from '@shared/components/pricing/pricing.component';
+import {AuthGuard} from '@shared/guards/auth.guard';
 
 const routes: Routes = [
   {

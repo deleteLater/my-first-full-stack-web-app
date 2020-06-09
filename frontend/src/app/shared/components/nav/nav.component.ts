@@ -1,9 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AccountService} from '../../services/account.service';
-import {User} from '../../models/user';
+import {AccountService} from '@core/account.service';
+import {User} from '@modules/general/user/shared/user';
 import {MatDialog} from '@angular/material/dialog';
 import {AccountDialogComponent} from './account-dialog.component';
-import {SideNavService} from '../../services/side-nav.service';
+import {SideNavService} from './shared/side-nav.service';
 
 // noinspection CssUnusedSymbol
 @Component({

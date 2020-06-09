@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <div class="container">
       <div class="content">
         <h1 id="h1-page-in-building">Page In Building</h1>
-        <img src="../../../assets/img/exhausted-with-work.jpg" alt="page in building">
+        <img src="../../../../assets/img/exhausted-with-work.jpg" alt="page in building">
         <a id="a-page-not-found" mat-stroked-button routerLink="">BACK TO HOME</a>
       </div>
     </div>

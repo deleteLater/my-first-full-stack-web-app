@@ -6,7 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {TenantService} from '../services/tenant.service';
+import {TenantService} from '@core/tenant.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -18,14 +18,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    // interceptor for tenant
+    // interceptors for tenant
     request = request.clone({
       setHeaders: {
         __tenant: this.tenant.getTenant()
       }
     });
 
-    // interceptor for authorization
+    // interceptors for authorization
     if (!request.headers.get('Authorization')) {
       request = request.clone({
         setHeaders: {
