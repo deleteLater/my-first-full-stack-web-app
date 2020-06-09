@@ -6,13 +6,16 @@ import {HomeComponent} from './home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppMaterialModule} from '../material/app-material.module';
 import {TodoComponent} from './todo/todo.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {TodoItemComponent} from './todo/todo-item.component';
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, TodoComponent],
+  declarations: [HomeComponent, DashboardComponent, TodoComponent, TodoItemComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    FlexLayoutModule
   ]
 })
 export class HomeModule {

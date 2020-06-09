@@ -83,10 +83,6 @@ import {MatDialog} from '@angular/material/dialog';
       font-size: 14px;
     }
 
-    .mat-expansion-panel-header {
-      padding: 0 20px;
-    }
-
     mat-card {
       margin: 10px;
     }

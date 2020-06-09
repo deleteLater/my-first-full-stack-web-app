@@ -27,6 +27,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
 
 const materials = [
   MatToolbarModule,
@@ -55,7 +56,8 @@ const materials = [
   MatSelectModule,
   MatSnackBarModule,
   MatStepperModule,
-  FormsModule
+  FormsModule,
+  MatRadioModule
 ];
 
 const customIcons = [
@@ -79,7 +81,13 @@ const customIcons = [
   'default',
   'superman',
   'role',
-  'hacker'
+  'hacker',
+  'priority-1',
+  'priority-2',
+  'priority-3',
+  'priority',
+  'edit',
+  'comment'
 ];
 
 @NgModule({

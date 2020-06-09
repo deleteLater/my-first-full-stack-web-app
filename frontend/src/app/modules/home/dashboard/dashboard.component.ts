@@ -14,7 +14,7 @@ export class DashboardComponent {
     map(({matches}) => {
       if (matches) {
         return [
-          {title: 'Card 1', cols: 1, rows: 1, component: TodoComponent},
+          {title: 'Todo List', cols: 1, rows: 1, component: TodoComponent},
           {title: 'Card 2', cols: 1, rows: 1},
           {title: 'Card 3', cols: 1, rows: 1},
           {title: 'Card 4', cols: 1, rows: 1}
@@ -22,7 +22,7 @@ export class DashboardComponent {
       }
 
       return [
-        {title: 'Card 1', cols: 2, rows: 1, component: TodoComponent},
+        {title: 'Todo List', cols: 2, rows: 1, component: TodoComponent},
         {title: 'Card 2', cols: 1, rows: 1},
         {title: 'Card 3', cols: 1, rows: 2},
         {title: 'Card 4', cols: 1, rows: 1}

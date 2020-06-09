@@ -1,1 +1,41 @@
-<p>todo works!</p>
+<div style="height: 100%" fxLayout="row">
+  <mat-accordion fxFlex="20">
+    <mat-expansion-panel class="mat-elevation-z0" [expanded]="expandPanel[0]" (opened)="openPanel(0)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Status
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-radio-group [(ngModel)]="time">
+        <mat-radio-button value="Today">Today</mat-radio-button>
+        <mat-radio-button value="Tomorrow">Tomorrow</mat-radio-button>
+        <mat-radio-button value="Someday">Someday</mat-radio-button>
+      </mat-radio-group>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="mat-elevation-z0" [expanded]="expandPanel[1]" (opened)="openPanel(1)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Priority</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-radio-group [(ngModel)]="priority">
+        <mat-radio-button value="Priority 1">Priority 1</mat-radio-button>
+        <mat-radio-button value="Priority 2">Priority 2</mat-radio-button>
+        <mat-radio-button value="Priority 3">Priority 3</mat-radio-button>
+      </mat-radio-group>
+    </mat-expansion-panel>
+    <span *ngIf="time || priority" class="filter-text">Current Filter: {{time}}, {{priority}}</span>
+  </mat-accordion>
+  <div fxLayout="column" fxFlex>
+    <mat-form-field appearance="outline">
+      <mat-label>WHAT TO DO</mat-label>
+      <input matInput placeholder="what plan to do today">
+      <mat-icon matSuffix>emoji_nature</mat-icon>
+    </mat-form-field>
+    <mat-list role="list" fxFlex>
+      <mat-list-item role="listitem" *ngFor="let todo of todos">
+        <div class="item-container">
+          <app-todo-item [todo]="todo"></app-todo-item>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

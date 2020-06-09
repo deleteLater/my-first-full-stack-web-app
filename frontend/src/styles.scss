@@ -5,11 +5,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* shared style */
 .icon-text {
-  display: flex;
+  display: flex !important;
   align-items: center;
 
   span {
     margin-left: 6px;
+  }
+}
+.avatar-circle-container {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+
+  &:hover {
+    box-sizing: border-box;
+    border: #EEEEEE solid 3px;
+    border-radius: 50%;
+  }
+
+  mat-icon {
+    height: 24px;
+    width: 24px;
   }
 }
 
@@ -39,4 +57,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* custom global mat-step */
 .mat-vertical-content {
   padding-bottom: 0 !important;
+}
+
+/* custom expansion panel */
+.mat-expansion-panel-header {
+  height: 48px !important;
+  padding: 0 20px;
+}
+.mat-expansion-panel-body {
+  padding-bottom: 0 !important;
+}
+
+/* custom global mat-tooltip */
+.mat-tooltip {
+  color: #FAFAFA !important;
+}
+
+/* custom global mat-list */
+mat-list {
+  overflow: auto;
 }
