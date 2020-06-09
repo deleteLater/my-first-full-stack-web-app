@@ -43,4 +43,8 @@ mat-list-item {
 
 .item-container {
   width: 100%;
+
+  &:hover {
+    background-color: #EEEEEE;
+  }
 }
