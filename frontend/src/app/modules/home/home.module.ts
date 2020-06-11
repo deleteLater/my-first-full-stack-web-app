@@ -7,10 +7,19 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppMaterialModule} from '../material/app-material.module';
 import {TodoComponent} from './todo/todo.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {TodoItemComponent} from './todo/todo-item.component';
+import {TodoItemReadComponent} from './todo/todo-item-read.component';
+import {TodoItemUpdateComponent} from './todo/todo-item-update.component';
+import {TodoItemContainerComponent} from './todo/todo-item-container.component';
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, TodoComponent, TodoItemComponent],
+  declarations: [
+    HomeComponent,
+    DashboardComponent,
+    TodoComponent,
+    TodoItemReadComponent,
+    TodoItemUpdateComponent,
+    TodoItemContainerComponent
+  ],
   imports: [
     CommonModule,
     HomeRoutingModule,

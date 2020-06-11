@@ -36,6 +36,7 @@ mat-radio-button {
 
 mat-list {
   width: 100%;
+  padding-top: 16px;
 }
 mat-list-item {
   margin-bottom: 32px;
@@ -43,8 +44,8 @@ mat-list-item {
 
 .item-container {
   width: 100%;
+}
 
-  &:hover {
-    background-color: #EEEEEE;
-  }
+mat-form-field {
+  padding-bottom: 0;
 }
